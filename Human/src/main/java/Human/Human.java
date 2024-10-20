@@ -1,17 +1,17 @@
 package Human;
 
+import java.util.ArrayList;
+import java.util.List;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.lang3.StringUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Human {
     private static final String SPACE = " ";
     private static final String GENDER_EXCEPTION_MESSAGE = "У родителей одинаковый пол";
+
     @NonNull
     String firstName; //имя
     @NonNull
@@ -85,7 +85,8 @@ public class Human {
     /**
      * создание ребенка
      */
-    public Human makeChild(String name, String secondName, String thirdName, Gender gender, Human otherParent) {
+    public Human makeChild(@NonNull String name, @NonNull String secondName, @NonNull String thirdName,
+                           @NonNull Gender gender, @NonNull Human otherParent) {
         if (isParentsHasDifferentGender(this, otherParent)) {
             Human child = new Human.HumanBuilder(name, secondName, thirdName, gender).build();
             setParentsAndChild(this, otherParent, child);
@@ -95,7 +96,6 @@ public class Human {
         }
     }
 
-    //2.4 У человека есть функция "Получить полное имя": возвращается строка ФИО.
     /**
      * Получение полного имени
      */
