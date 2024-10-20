@@ -7,17 +7,17 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("checkstyle:Indentation")
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Human {
     private static final String SPACE = " ";
+    private static final String GENDER_EXCEPTION_MESSAGE = "У родителей одинаковый пол";
     @NonNull
     String firstName; //имя
     @NonNull
-    String secondName;
+    String lastName;
     @NonNull// фамилия
-    String thirdName;
+    String middleName;
     @NonNull// отчество
     Gender gender;
     Human father;
@@ -34,8 +34,8 @@ public class Human {
 
     private Human(HumanBuilder builder) {
         this.firstName = builder.firstName;
-        this.secondName = builder.secondName;
-        this.thirdName = builder.thirdName;
+        this.lastName = builder.lastName;
+        this.middleName = builder.middleName;
         this.gender = builder.gender;
         this.father = builder.father;
         this.mother = builder.father;
@@ -50,7 +50,7 @@ public class Human {
             addChildToParents(firstParent, secondParent, child);
             setMotherAndFather(firstParent, secondParent, child);
         } else {
-            throw new GenderEqualsException("У родителей одинаковый пол");
+            throw new GenderEqualsException(GENDER_EXCEPTION_MESSAGE);
         }
     }
 
@@ -90,8 +90,9 @@ public class Human {
             Human child = new Human.HumanBuilder(name, secondName, thirdName, gender).build();
             setParentsAndChild(this, otherParent, child);
             return child;
+        } else {
+            throw new GenderEqualsException(GENDER_EXCEPTION_MESSAGE);
         }
-        return null;
     }
 
     //2.4 У человека есть функция "Получить полное имя": возвращается строка ФИО.
@@ -99,7 +100,7 @@ public class Human {
      * Получение полного имени
      */
     public String getFullName() {
-        return secondName + SPACE + firstName + SPACE + thirdName;
+        return lastName + SPACE + firstName + SPACE + middleName;
     }
 
     /**
@@ -110,19 +111,20 @@ public class Human {
         @NonNull
         String firstName;
         @NonNull
-        String secondName;
+        String lastName;
         @NonNull
-        String thirdName;
+        String middleName;
         @NonNull// отчество
         Gender gender;
         Human father;
         Human mother;
         List<Human> children;
 
-        public HumanBuilder(@NonNull String firstName, @NonNull String secondName, @NonNull String thirdName, Gender gender) {
+        public HumanBuilder(
+                @NonNull String firstName, @NonNull String lastName, @NonNull String middleName, Gender gender) {
             this.firstName = transformText(firstName);
-            this.secondName = transformText(secondName);
-            this.thirdName = transformText(thirdName);
+            this.lastName = transformText(lastName);
+            this.middleName = transformText(middleName);
             this.gender = gender;
         }
 
