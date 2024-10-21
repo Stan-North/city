@@ -3,7 +3,6 @@ package employee;
 import human.Gender;
 import lombok.NonNull;
 import task.ProgrammerTask;
-import task.Task;
 
 import java.math.BigDecimal;
 
@@ -13,7 +12,8 @@ public class Programmer extends Employee implements ProgrammerTask {
     private static final String MIN_RATE_EXCEPTION = "Часовая ставка ниже минимальной < ";
     private static final String MAX_RATE_EXCEPTION = "Часовая ставка выше максимальной > ";
 
-    public Programmer(@NonNull String firstName, @NonNull String lastName, @NonNull String middleName, @NonNull Gender gender) {
+    public Programmer(@NonNull String firstName, @NonNull String lastName,
+                      @NonNull String middleName, @NonNull Gender gender) {
         super(firstName, lastName, middleName, gender);
     }
 

@@ -13,7 +13,8 @@ public class Employee extends Human {
     @Getter
     private BigDecimal rate;
 
-    public Employee(@NonNull String firstName, @NonNull String lastName, @NonNull String middleName, @NonNull Gender gender) {
+    public Employee(@NonNull String firstName, @NonNull String lastName,
+                    @NonNull String middleName, @NonNull Gender gender) {
         super(firstName, lastName, middleName, gender);
     }
 }
