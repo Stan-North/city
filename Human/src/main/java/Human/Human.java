@@ -11,8 +11,6 @@ import org.apache.commons.lang3.StringUtils;
 public class Human {
     private static final String SPACE = " ";
     private static final String GENDER_EXCEPTION_MESSAGE = "У родителей одинаковый пол";
-    private static final String HUMAN_FIELDS_EXCEPTION_MESSAGE = "Поля: имя, фамилия, " +
-            "отчество и пол не могут быть null";
     @NonNull
     final String firstName;
     @NonNull
@@ -27,10 +25,8 @@ public class Human {
     Human mother;
     final List<Human> children;
 
-    public Human(String firstName, String lastName, String middleName, Gender gender) {
-        if ((firstName == null || lastName == null || middleName == null || gender == null)) {
-            throw new HumanFieldsNullException(HUMAN_FIELDS_EXCEPTION_MESSAGE);
-        }
+    public Human(@NonNull String firstName, @NonNull String lastName, @NonNull String middleName,
+                 @NonNull Gender gender) {
         this.firstName = transformText(firstName);
         this.lastName = transformText(lastName);
         this.middleName = transformText(middleName);
@@ -46,7 +42,6 @@ public class Human {
         return StringUtils.capitalize(result);
     }
 
-
     /**
      * Метод, устанавливающий для обоих родителей - ребенка, а для ребенка - родителей
      */
@@ -60,7 +55,7 @@ public class Human {
     }
 
     /**
-     * проверка на разные пол у родителей
+     * Проверка на разный пол у родителей
      */
     private boolean isParentsHasDifferentGender(Human firstParent, Human secondParent) {
         return !firstParent.getGender().equals(secondParent.getGender());
@@ -75,7 +70,7 @@ public class Human {
     }
 
     /**
-     * добавление человеку родителей
+     * Добавление человеку родителей
      */
     private void setMotherAndFather(Human firstHuman, Human secondHuman, Human child) {
         if (firstHuman.getGender().equals(Gender.MALE)) {
@@ -88,7 +83,7 @@ public class Human {
     }
 
     /**
-     * создание ребенка
+     * Создание ребенка
      */
     public Human makeChild(@NonNull String name, @NonNull String secondName, @NonNull String thirdName,
                            @NonNull Gender gender, @NonNull Human otherParent) {
