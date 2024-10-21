@@ -1,4 +1,4 @@
-import Human.*;
+import human.*;
 
 
 public class RunnerTest {
