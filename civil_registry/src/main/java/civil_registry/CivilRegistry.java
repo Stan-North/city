@@ -3,6 +3,7 @@ package civil_registry;
 import citizen.Citizen;
 import citizen.MaritalStatus;
 import lombok.Getter;
+import Human.Human;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -18,7 +19,7 @@ public class CivilRegistry {
     private static final String PATTERN_FROM_DATE = "dd/MM/yyyy";
     private static final String PATTERN_FROM_STATISTICS = """
             Статистика по ЗАГС: %s
-            Дата %s: количество свадеб - %d, количество рвзводов - %d, количество рождений - %d.
+            Дата %s: количество свадеб - %d, количество разводов - %d, количество рождений - %d.
             """;
     private String civilRegistryName;
     private HashMap<LocalDate, ArrayList<CivilActionRecord>> civilActionRecords;

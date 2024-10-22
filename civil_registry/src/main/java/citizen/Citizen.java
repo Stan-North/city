@@ -13,7 +13,6 @@ public class Citizen extends Human {
     MaritalStatus maritalStatus;
     Human spouse;
 
-    @SneakyThrows
     public Citizen(@NonNull String firstName, @NonNull String lastName,
                    @NonNull String middleName, @NonNull Gender gender, @NonNull MaritalStatus maritalStatus,
                    Human spouse) {
@@ -31,5 +30,10 @@ public class Citizen extends Human {
         if (spouse == null) {
             throw new SponceNotFoundException(SPOUSE_NOT_FOUND);
         }
+    }
+
+    public  static Citizen makeCitizenFromChild(Human child) {
+        return new Citizen(child.getFirstName(), child.getLastName(), child.getMiddleName(), child.getGender(),
+                MaritalStatus.NOT_MARRIED, null);
     }
 }
