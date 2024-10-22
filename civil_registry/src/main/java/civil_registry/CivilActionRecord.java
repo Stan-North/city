@@ -9,6 +9,11 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ *
+ * Запись гражданского действия
+ */
+
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CivilActionRecord {

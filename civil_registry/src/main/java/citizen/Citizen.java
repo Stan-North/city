@@ -25,6 +25,10 @@ public class Citizen extends Human {
         }
     }
 
+    /**
+     *
+     * Внутренний метод, проверяет передан ли супруг, если maritalStatus == MaritalStatus.MARRIED
+     */
     @SneakyThrows
     private void checkSpouse(Human spouse) {
         if (spouse == null) {
@@ -32,6 +36,9 @@ public class Citizen extends Human {
         }
     }
 
+    /**
+     * Делаем из ребенка(Human) гражданина(Citizen)
+     */
     public  static Citizen makeCitizenFromChild(Human child) {
         return new Citizen(child.getFirstName(), child.getLastName(), child.getMiddleName(), child.getGender(),
                 MaritalStatus.NOT_MARRIED, null);
