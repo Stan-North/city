@@ -1,11 +1,10 @@
 package civil_registry;
 
-import Human.Human;
+import citizen.Citizen;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -16,11 +15,11 @@ public class CivilActionRecord {
 
     LocalDate actionDate;
     CivilActionType actionType;
-    List<Human> humanList;
+    List<Citizen> citizensList;
 
-    public CivilActionRecord(LocalDate actionDate, CivilActionType actionType, Human... humans) {
+    public CivilActionRecord(LocalDate actionDate, CivilActionType actionType, Citizen... humans) {
         this.actionDate = actionDate;
         this.actionType = actionType;
-        this.humanList = Arrays.asList(humans);
+        this.citizensList = Arrays.asList(humans);
     }
 }
