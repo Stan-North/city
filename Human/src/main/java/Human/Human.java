@@ -27,10 +27,8 @@ public class Human {
     Human mother;
     final List<Human> children;
 
-    public Human(String firstName, String lastName, String middleName, Gender gender) {
-        if ((firstName == null || lastName == null || middleName == null || gender == null)) {
-            throw new HumanFieldsNullException(HUMAN_FIELDS_EXCEPTION_MESSAGE);
-        }
+    public Human(@NonNull String firstName, @NonNull String lastName,
+                 @NonNull String middleName, @NonNull Gender gender) {
         this.firstName = transformText(firstName);
         this.lastName = transformText(lastName);
         this.middleName = transformText(middleName);
