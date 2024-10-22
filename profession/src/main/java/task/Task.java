@@ -7,12 +7,12 @@ import lombok.experimental.FieldDefaults;
 
 
 @Setter(value = AccessLevel.PROTECTED)
-@Getter(value = AccessLevel.PUBLIC)
+@Getter()
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Task {
-    private String description;
-    private TaskStatusType status;
-    private Integer laborHours;
+    String description;
+    TaskStatusType status;
+    Integer laborHours;
 
     public Task(String description) {
         this.description = description;
