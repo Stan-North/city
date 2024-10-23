@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-
-@Setter(value = AccessLevel.PROTECTED)
+@Setter(value = AccessLevel.MODULE)
 @Getter()
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Task {
