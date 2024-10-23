@@ -10,12 +10,14 @@
     <packaging>pom</packaging>
     <modules>
         <module>human</module>
+        <module>civil_registry_v2</module>
     </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <lombok.version>1.18.24</lombok.version>
     </properties>
 
     <profiles>
