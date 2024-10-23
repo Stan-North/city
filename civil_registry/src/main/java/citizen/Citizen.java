@@ -11,11 +11,14 @@ import lombok.experimental.FieldDefaults;
 public class Citizen extends Human {
     static final String SPOUSE_NOT_FOUND = "Не указан супруг(а)";
     MaritalStatus maritalStatus;
-    Human spouse;
+    Citizen spouse;
 
+    /**
+     * Конструктор
+     */
     public Citizen(@NonNull String firstName, @NonNull String lastName,
                    @NonNull String middleName, @NonNull Gender gender, @NonNull MaritalStatus maritalStatus,
-                   Human spouse) {
+                   Citizen spouse) {
         super(firstName, lastName, middleName, gender);
         this.maritalStatus = maritalStatus;
 
@@ -26,7 +29,15 @@ public class Citizen extends Human {
     }
 
     /**
-     *
+     * Конструктор для преобразования ребенка(Human) в гражданина(Сшешяут)
+     */
+    public Citizen(Human child) {
+        super(child.getFirstName(), child.getLastName(), child.getMiddleName(), child.getGender());
+        this.maritalStatus = MaritalStatus.NOT_MARRIED;
+        this.spouse = null;
+    }
+
+    /**
      * Внутренний метод, проверяет передан ли супруг, если maritalStatus == MaritalStatus.MARRIED
      */
     @SneakyThrows
@@ -36,11 +47,4 @@ public class Citizen extends Human {
         }
     }
 
-    /**
-     * Делаем из ребенка(Human) гражданина(Citizen)
-     */
-    public  static Citizen makeCitizenFromChild(Human child) {
-        return new Citizen(child.getFirstName(), child.getLastName(), child.getMiddleName(), child.getGender(),
-                MaritalStatus.NOT_MARRIED, null);
-    }
 }

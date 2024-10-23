@@ -13,8 +13,9 @@ public class RunnerProm {
                 Gender.MALE, MaritalStatus.NOT_MARRIED, null);
         Citizen woman = new Citizen("Екатерина", "Петрова", "Ивановна",
                 Gender.FEMALE, MaritalStatus.NOT_MARRIED, null);
-        Citizen child = Citizen.makeCitizenFromChild(man.makeChild("Петр", "Иванов",
-                "Иванович", Gender.MALE, woman));
+        Human child = man.makeChild("Петр", "Иванов",
+                "Иванович", Gender.MALE, woman);
+        Citizen childCitizen = new Citizen(child);
 
         Citizen man2 = new Citizen("Иван", "Иванов2", "Иванович",
                 Gender.MALE, MaritalStatus.NOT_MARRIED, null);
@@ -32,9 +33,9 @@ public class RunnerProm {
 
         civilRegistry.divorceRegistration(man2, woman2, LocalDate.now());
 
-        civilRegistry.childRegistration(child, man, woman, LocalDate.now());
-        civilRegistry.childRegistration(child, man, woman, LocalDate.now());
-        civilRegistry.childRegistration(child, man, woman, LocalDate.now());
+        civilRegistry.childRegistration(childCitizen, man, woman, LocalDate.now());
+        civilRegistry.childRegistration(childCitizen, man, woman, LocalDate.now());
+        civilRegistry.childRegistration(childCitizen, man, woman, LocalDate.now());
 
         civilRegistry.statisticsOfDate(LocalDate.now());
     }

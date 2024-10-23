@@ -1,5 +1,6 @@
 package civil_registry;
 
+import Human.Human;
 import citizen.Citizen;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -20,11 +21,11 @@ public class CivilActionRecord {
 
     LocalDate actionDate;
     CivilActionType actionType;
-    List<Citizen> citizensList;
+    List<Citizen> citizenList;
 
-    public CivilActionRecord(LocalDate actionDate, CivilActionType actionType, Citizen... humans) {
+    public CivilActionRecord(LocalDate actionDate, CivilActionType actionType, Citizen... citizens) {
         this.actionDate = actionDate;
         this.actionType = actionType;
-        this.citizensList = Arrays.asList(humans);
+        this.citizenList = Arrays.asList(citizens);
     }
 }
