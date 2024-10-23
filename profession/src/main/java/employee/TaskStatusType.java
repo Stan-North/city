@@ -1,4 +1,4 @@
-package task;
+package employee;
 
 public enum TaskStatusType {
     IN_PROGRESS,
