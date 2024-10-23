@@ -1,16 +1,21 @@
 package employee;
 
 import human.Gender;
+import lombok.AccessLevel;
 import lombok.NonNull;
+import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
 
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class Programmer extends Employee {
-    private static final int COMPARE_SEPARATOR = 0;
-    private static final BigDecimal MIN_RATE = new BigDecimal(1500);
-    private static final BigDecimal MAX_RATE = new BigDecimal(2000);
-    private static final String MIN_RATE_EXCEPTION = "Часовая ставка ниже минимальной < ";
-    private static final String MAX_RATE_EXCEPTION = "Часовая ставка выше максимальной > ";
+    static int COMPARE_SEPARATOR = 0;
+    static BigDecimal MIN_RATE = new BigDecimal(1500);
+    static BigDecimal MAX_RATE = new BigDecimal(2000);
+    static String MIN_RATE_EXCEPTION = "Часовая ставка ниже минимальной < ";
+    static String MAX_RATE_EXCEPTION = "Часовая ставка выше максимальной > ";
+    static Double INITIAL_PROGRAMMER_TASK_LABOR_HOURS = 0.0;
+    static String REDUCED_LABOR_HOURS_EXCEPTION = "Часы работы нельзя уменьшить";
 
     public Programmer(@NonNull String firstName, @NonNull String lastName,
                       @NonNull String middleName, @NonNull Gender gender) {
@@ -30,9 +35,6 @@ public class Programmer extends Employee {
         }
         super.setRate(rate);
     }
-
-    Double INITIAL_PROGRAMMER_TASK_LABOR_HOURS = 0.0;
-    String REDUCED_LABOR_HOURS_EXCEPTION = "Часы работы нельзя уменьшить";
 
     /**
      * Задача взята в работу, переводится в статус "в работе", устанавливаются часы в ноль.
