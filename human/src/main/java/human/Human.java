@@ -1,4 +1,4 @@
-package Human;
+package human;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,18 +11,28 @@ import org.apache.commons.lang3.StringUtils;
 public class Human {
     private static final String SPACE = " ";
     private static final String GENDER_EXCEPTION_MESSAGE = "У родителей одинаковый пол";
-
     @NonNull
-    String firstName; //имя
+    final String firstName;
     @NonNull
-    String lastName;
-    @NonNull// фамилия
-    String middleName;
-    @NonNull// отчество
-    Gender gender;
+    final String lastName;
+    @NonNull
+    final String middleName;
+    @NonNull
+    final Gender gender;
+    @Setter
     Human father;
+    @Setter
     Human mother;
-    List<Human> children;
+    final List<Human> children;
+
+    public Human(@NonNull String firstName, @NonNull String lastName, @NonNull String middleName,
+                 @NonNull Gender gender) {
+        this.firstName = transformText(firstName);
+        this.lastName = transformText(lastName);
+        this.middleName = transformText(middleName);
+        this.gender = gender;
+        this.children = new ArrayList<>();
+    }
 
     /**
      * Приводит строку к правильному виду
@@ -30,16 +40,6 @@ public class Human {
     private static String transformText(String text) {
         String result = text.toLowerCase();
         return StringUtils.capitalize(result);
-    }
-
-    private Human(HumanBuilder builder) {
-        this.firstName = builder.firstName;
-        this.lastName = builder.lastName;
-        this.middleName = builder.middleName;
-        this.gender = builder.gender;
-        this.father = builder.father;
-        this.mother = builder.father;
-        this.children = builder.children;
     }
 
     /**
@@ -55,7 +55,7 @@ public class Human {
     }
 
     /**
-     * проверка на разные пол у родителей
+     * Проверка на разный пол у родителей
      */
     private boolean isParentsHasDifferentGender(Human firstParent, Human secondParent) {
         return !firstParent.getGender().equals(secondParent.getGender());
@@ -70,7 +70,7 @@ public class Human {
     }
 
     /**
-     * добавление человеку родителей
+     * Добавление человеку родителей
      */
     private void setMotherAndFather(Human firstHuman, Human secondHuman, Human child) {
         if (firstHuman.getGender().equals(Gender.MALE)) {
@@ -83,12 +83,12 @@ public class Human {
     }
 
     /**
-     * создание ребенка
+     * Создание ребенка
      */
     public Human makeChild(@NonNull String name, @NonNull String secondName, @NonNull String thirdName,
                            @NonNull Gender gender, @NonNull Human otherParent) {
         if (isParentsHasDifferentGender(this, otherParent)) {
-            Human child = new Human.HumanBuilder(name, secondName, thirdName, gender).build();
+            Human child = new Human(name, secondName, thirdName, gender);
             setParentsAndChild(this, otherParent, child);
             return child;
         } else {
@@ -102,52 +102,4 @@ public class Human {
     public String getFullName() {
         return lastName + SPACE + firstName + SPACE + middleName;
     }
-
-    /**
-     * билдер для человека
-     */
-    @SuppressWarnings("checkstyle:LineLength")
-    public static class HumanBuilder {
-        @NonNull
-        String firstName;
-        @NonNull
-        String lastName;
-        @NonNull
-        String middleName;
-        @NonNull// отчество
-        Gender gender;
-        Human father;
-        Human mother;
-        List<Human> children;
-
-        public HumanBuilder(
-                @NonNull String firstName, @NonNull String lastName, @NonNull String middleName, Gender gender) {
-            this.firstName = transformText(firstName);
-            this.lastName = transformText(lastName);
-            this.middleName = transformText(middleName);
-            this.gender = gender;
-        }
-
-        public HumanBuilder father(Human father) {
-            this.father = father;
-            return this;
-        }
-
-        public HumanBuilder mother(Human mother) {
-            this.mother = mother;
-            return this;
-        }
-
-        public HumanBuilder children(Human... children) {
-            List<Human> childrenList = List.of(children);
-            this.children.addAll(childrenList);
-            return this;
-        }
-
-        public Human build() {
-            this.children = new ArrayList<>();
-            return new Human(this);
-        }
-    }
-
 }

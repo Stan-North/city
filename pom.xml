@@ -9,7 +9,8 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
     <modules>
-        <module>Human</module>
+        <module>human</module>
+        <module>profession</module>
     </modules>
 
     <properties>
@@ -130,17 +131,12 @@
             <artifactId>maven-assembly-plugin</artifactId>
             <version>3.7.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
 
     <reporting>
