@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 public class Task {
     String description;
     TaskStatusType status;
-    Integer laborHours;
+    Double laborHours;
 
     public Task(String description) {
         this.description = description;
