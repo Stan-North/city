@@ -1,10 +1,13 @@
 package citizen;
 
-import Human.Human;
 import Human.Gender;
+import Human.Human;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * Класс Citizen.
+ */
 @Setter
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)

@@ -1,14 +1,16 @@
-import Human.Human;
 import Human.Gender;
+import Human.Human;
 import citizen.Citizen;
 import citizen.MaritalStatus;
 import civil_registry.CivilRegistry;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-public class RunnerProm {
+public class RunnerTest {
+    private static final String TEST_NAME = "TEST_ZAGS";
+
     public static void main(String[] args) {
+
         Citizen man = new Citizen("Иван", "Иванов1", "Иванович",
                 Gender.MALE, MaritalStatus.NOT_MARRIED, null);
         Citizen woman = new Citizen("Екатерина", "Петрова", "Ивановна",
@@ -26,11 +28,9 @@ public class RunnerProm {
         Citizen woman3 = new Citizen("Екатерина", "Петрова", "Ивановна",
                 Gender.FEMALE, MaritalStatus.NOT_MARRIED, null);
 
-        CivilRegistry civilRegistry = new CivilRegistry("args[0]");
-
+        CivilRegistry civilRegistry = new CivilRegistry(TEST_NAME);
         civilRegistry.marriageRegistration(man, woman, LocalDate.now());
         civilRegistry.marriageRegistration(man2, woman2, LocalDate.now());
-
 
         civilRegistry.divorceRegistration(man2, woman2, LocalDate.now());
 

@@ -21,9 +21,53 @@
     <dependencies>
         <dependency>
             <groupId>org.javaacademy</groupId>
-            <artifactId>human</artifactId>
+            <artifactId>Human</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
+
+
+    <profiles>
+        <profile>
+            <id>prom</id>
+            <build>
+                <finalName>civil_registry_app_prom</finalName>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <addClasspath>true</addClasspath>
+                                    <mainClass>RunnerProm</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>test</id>
+            <build>
+                <finalName>civil_registry_app_test</finalName>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <addClasspath>true</addClasspath>
+                                    <mainClass>RunnerProm</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
