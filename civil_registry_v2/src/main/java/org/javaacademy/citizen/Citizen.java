@@ -2,7 +2,11 @@ package org.javaacademy.citizen;
 
 import human.Gender;
 import human.Human;
-import lombok.*;
+import lombok.Setter;
+import lombok.Getter;
+import lombok.AccessLevel;
+import lombok.NonNull;
+import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
 
 @Setter

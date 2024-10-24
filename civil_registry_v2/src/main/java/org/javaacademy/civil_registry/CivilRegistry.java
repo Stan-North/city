@@ -61,9 +61,9 @@ public class CivilRegistry {
         CivilActionRecord record = new CivilActionRecord(dateRecord, CivilActionType.MARRIAGE_REGISTRATION,
                 male, female);
         checkMarriedStatus(male, female);
+        addActionInRecord(record);
         male.setMaritalStatus(MaritalStatus.MARRIED);
         female.setMaritalStatus(MaritalStatus.MARRIED);
-        addActionInRecord(record);
     }
 
     /**
@@ -73,9 +73,9 @@ public class CivilRegistry {
         CivilActionRecord record = new CivilActionRecord(dateRecord, CivilActionType.DIVORCE_REGISTRATION,
                 male, female);
         checkDeviorcedStatus(male, female);
+        addActionInRecord(record);
         male.setMaritalStatus(MaritalStatus.DIVORCED);
         female.setMaritalStatus(MaritalStatus.DIVORCED);
-        addActionInRecord(record);
     }
 
     /**
@@ -89,6 +89,7 @@ public class CivilRegistry {
                 getCountTypeActionFromRecords(statisticsDate, CivilActionType.DIVORCE_REGISTRATION),
                 getCountTypeActionFromRecords(statisticsDate, CivilActionType.BIRTH_REGISTRATION));
     }
+
     /**
      * Внутренний метод проверки состоит кто то кандидатов в браке или нет
      */
