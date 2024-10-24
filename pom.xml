@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>human</module>
+        <module>civil_registry_v2</module>
         <module>profession</module>
     </modules>
 
@@ -138,7 +139,6 @@
         </dependency>
     </dependencies>
 
-
     <reporting>
         <plugins>
             <plugin>
@@ -155,6 +155,5 @@
             </plugin>
         </plugins>
     </reporting>
-
 
 </project>

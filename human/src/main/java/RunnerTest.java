@@ -1,4 +1,6 @@
-import human.*;
+import human.Human;
+import human.Gender;
+
 
 
 public class RunnerTest {
