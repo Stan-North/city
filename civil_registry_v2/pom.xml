@@ -27,9 +27,9 @@
 
     <profiles>
         <profile>
-            <id>Prom</id>
+            <id>Prom_Civil</id>
             <build>
-                <finalName>civil_registry_app</finalName>
+                <finalName>civil_registry_app_prom</finalName>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -60,9 +60,9 @@
             </build>
         </profile>
         <profile>
-            <id>Test</id>
+            <id>Test_Civil</id>
             <build>
-                <finalName>civil_registry_app</finalName>
+                <finalName>civil_registry_app_test</finalName>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
