@@ -32,9 +32,9 @@ public class CivilRegistry {
     }
 
     /**
-     * Добавление записи в список
+     * Внутренний метод добавление записи в список.
      */
-    public void addActionInRecord(CivilActionRecord record) {
+    private void addActionInRecord(CivilActionRecord record) {
         if (!this.civilActionRecords.containsKey(record.getActionDate())) {
             this.civilActionRecords.put(record.getActionDate(), new ArrayList<>());
         }
@@ -42,7 +42,7 @@ public class CivilRegistry {
     }
 
     /**
-     * Внутренний метод получения количества записей на переданную дату по типу гражданского действия
+     * Внутренний метод получения количества записей на переданную дату по типу гражданского действия.
      */
     private Long getCountTypeActionFromRecords(LocalDate statisticsDate, CivilActionType actionType) {
         return this.civilActionRecords.get(statisticsDate).stream()
@@ -51,16 +51,16 @@ public class CivilRegistry {
     }
 
     /**
-     * Метод Регистрация ребенка
+     * Метод Регистрация ребенка.
      */
-    public void childRegistration(Citizen child, Citizen firstParent, Citizen secondParent, LocalDate dateRecord) {
+    public void childRegistration(Citizen child, Citizen father, Citizen mother, LocalDate dateRecord) {
         CivilActionRecord record = new CivilActionRecord(dateRecord, CivilActionType.BIRTH_REGISTRATION,
-                child, firstParent, secondParent);
+                child, father, mother);
         addActionInRecord(record);
     }
 
     /**
-     * Метод Регистрация брака
+     * Метод Регистрация брака.
      */
     public void marriageRegistration(Citizen male, Citizen female, LocalDate dateRecord)
             throws CitizenIsMarriedException {
@@ -75,7 +75,7 @@ public class CivilRegistry {
     }
 
     /**
-     * Метод расторжение брака
+     * Метод расторжение брака.
      */
     public void divorceRegistration(Citizen male, Citizen female, LocalDate dateRecord)
             throws CitizenIsMarriedException {
@@ -90,7 +90,7 @@ public class CivilRegistry {
     }
 
     /**
-     * Метод Получения статистики на указанную дату
+     * Метод Получения статистики на указанную дату.
      */
     public void statisticsOfDate(LocalDate statisticsDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(PATTERN_FROM_DATE);
@@ -102,7 +102,7 @@ public class CivilRegistry {
     }
 
     /**
-     * Внутренний метод проверки состоит кто-то кандидатов в браке или нет
+     * Внутренний метод проверки состоит кто-то кандидатов в браке или нет.
      */
     private boolean isAnyoneMarried(Citizen... citizens) {
         return Arrays.stream(citizens)
@@ -110,7 +110,7 @@ public class CivilRegistry {
     }
 
     /**
-     * Внутренний метод проверки разведен или не в браке, кто-то из кандидатов
+     * Внутренний метод проверки разведен или не в браке, кто-то из кандидатов.
      */
     private boolean isAnyoneNotMarried(Citizen... citizens) {
         return Arrays.stream(citizens)
@@ -118,7 +118,7 @@ public class CivilRegistry {
     }
 
     /**
-     * Внутренний метод обнуляет супругов(spouse)
+     * Внутренний метод обнуляет супругов(spouse).
      */
     private void removeSpouse(Citizen... citizens) {
         Arrays.stream(citizens)
@@ -126,7 +126,7 @@ public class CivilRegistry {
     }
 
     /**
-     * Внутренний метод изменяет семейное положение(MaritalStatus)
+     * Внутренний метод изменяет семейное положение(MaritalStatus).
      */
     private void setMaritalStatus(MaritalStatus status, Citizen... citizens) {
         Arrays.stream(citizens)
@@ -134,7 +134,7 @@ public class CivilRegistry {
     }
 
     /**
-     * Внутренний метод устанавливает супругов(spouse)
+     * Внутренний метод устанавливает супругов(spouse).
      */
     private void setSpouse(Citizen firstCandidate, Citizen secondCandidate) {
         firstCandidate.setSpouse(secondCandidate);

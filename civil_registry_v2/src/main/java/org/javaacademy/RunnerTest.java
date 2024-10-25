@@ -17,9 +17,8 @@ public class RunnerTest {
                 Gender.MALE, MaritalStatus.NOT_MARRIED, null);
         Citizen woman = new Citizen("Екатерина", "Петрова", "Ивановна",
                 Gender.FEMALE, MaritalStatus.NOT_MARRIED, null);
-        Human child = man.makeChild("Петр", "Иванов",
+        Citizen child = man.makeChild("Петр", "Иванов",
                 "Иванович", Gender.MALE, woman);
-        Citizen childCitizen = new Citizen(child);
 
         Citizen man2 = new Citizen("Иван", "Иванов2", "Иванович",
                 Gender.MALE, MaritalStatus.NOT_MARRIED, null);
@@ -33,9 +32,9 @@ public class RunnerTest {
 
         civilRegistry.divorceRegistration(man2, woman2, LocalDate.now());
 
-        civilRegistry.childRegistration(childCitizen, man, woman, LocalDate.now());
-        civilRegistry.childRegistration(childCitizen, man, woman, LocalDate.now());
-        civilRegistry.childRegistration(childCitizen, man, woman, LocalDate.now());
+        civilRegistry.childRegistration(child, man, woman, LocalDate.now());
+        civilRegistry.childRegistration(child, man, woman, LocalDate.now());
+        civilRegistry.childRegistration(child, man, woman, LocalDate.now());
 
         civilRegistry.statisticsOfDate(LocalDate.now());
     }
