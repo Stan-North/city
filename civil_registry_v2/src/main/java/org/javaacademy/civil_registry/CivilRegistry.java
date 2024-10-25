@@ -1,6 +1,8 @@
 package org.javaacademy.civil_registry;
 
+import lombok.AccessLevel;
 import lombok.SneakyThrows;
+import lombok.experimental.FieldDefaults;
 import org.javaacademy.citizen.Citizen;
 import org.javaacademy.citizen.MaritalStatus;
 
@@ -11,14 +13,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CivilRegistry {
-    private static final String PATTERN_FROM_DATE = "dd/MM/yyyy";
-    private static final String PATTERN_FROM_STATISTICS = """
+    static final String MESSAGE_IS_MARRIED = "Кто то из кандидатов состоит в браке";
+    static final String MESSAGE_NOT_MARRIED = "Кто то из кандидатов не состоит в браке";
+    static final String PATTERN_FROM_DATE = "dd/MM/yyyy";
+    static final String PATTERN_FROM_STATISTICS = """
             Статистика по ЗАГС: %s
             Дата %s: количество свадеб - %d, количество разводов - %d, количество рождений - %d.
             """;
-    private String civilRegistryName;
-    private HashMap<LocalDate, ArrayList<CivilActionRecord>> civilActionRecords;
+    String civilRegistryName;
+    HashMap<LocalDate, ArrayList<CivilActionRecord>> civilActionRecords;
 
     /**
      * Конструктор для ЗАГС.
@@ -59,10 +64,12 @@ public class CivilRegistry {
     /**
      * Метод Регистрация брака
      */
-    public void marriageRegistration(Citizen male, Citizen female, LocalDate dateRecord) {
+    public void marriageRegistration(Citizen male, Citizen female, LocalDate dateRecord) throws CitizenIsMarriedException {
         CivilActionRecord record = new CivilActionRecord(dateRecord, CivilActionType.MARRIAGE_REGISTRATION,
                 male, female);
-        checkMarriedStatus(male, female);
+        if (isAnyoneMarried(male, female)) {
+            throw new CitizenIsMarriedException(MESSAGE_IS_MARRIED);
+        }
         addActionInRecord(record);
         setMaritalStatus(MaritalStatus.MARRIED, male, female);
         setSpouse(male, female);
@@ -71,10 +78,12 @@ public class CivilRegistry {
     /**
      * Метод расторжение брака
      */
-    public void divorceRegistration(Citizen male, Citizen female, LocalDate dateRecord) {
+    public void divorceRegistration(Citizen male, Citizen female, LocalDate dateRecord) throws CitizenIsMarriedException {
         CivilActionRecord record = new CivilActionRecord(dateRecord, CivilActionType.DIVORCE_REGISTRATION,
                 male, female);
-        checkDivorceStatus(male, female);
+        if (isAnyoneNotMarried(male, female)) {
+            throw new CitizenIsMarriedException(MESSAGE_NOT_MARRIED);
+        }
         addActionInRecord(record);
         removeSpouse(male, female);
         setMaritalStatus(MaritalStatus.DIVORCED, male, female);
@@ -95,31 +104,17 @@ public class CivilRegistry {
     /**
      * Внутренний метод проверки состоит кто-то кандидатов в браке или нет
      */
-    @SneakyThrows
-    private void checkMarriedStatus(Citizen firstCandidate, Citizen secondCandidate) {
-        if (firstCandidate.getMaritalStatus() == MaritalStatus.MARRIED) {
-            throw new CitizenIsMarriedException("%s состоит в браке"
-                    .formatted(firstCandidate.getFullName()));
-        }
-        if (secondCandidate.getMaritalStatus() == MaritalStatus.MARRIED) {
-            throw new CitizenIsMarriedException("%s состоит в браке"
-                    .formatted(firstCandidate.getFullName()));
-        }
+    private boolean isAnyoneMarried(Citizen... citizens) {
+        return Arrays.stream(citizens)
+                .anyMatch(citizen -> citizen.getMaritalStatus() == MaritalStatus.MARRIED);
     }
 
     /**
-     * Внутренний метод проверки разведен или не в браке, кто то из кандидатов
+     * Внутренний метод проверки разведен или не в браке, кто-то из кандидатов
      */
-    @SneakyThrows
-    private void checkDivorceStatus(Citizen firstCandidate, Citizen secondCandidate) {
-        if (firstCandidate.getMaritalStatus() != MaritalStatus.MARRIED) {
-            throw new CitizenIsMarriedException("%s не состоит в браке"
-                    .formatted(firstCandidate.getFullName()));
-        }
-        if (secondCandidate.getMaritalStatus() != MaritalStatus.MARRIED) {
-            throw new CitizenIsMarriedException("%s не состоит в браке"
-                    .formatted(firstCandidate.getFullName()));
-        }
+    private boolean isAnyoneNotMarried(Citizen... citizens) {
+        return Arrays.stream(citizens)
+                .anyMatch(citizen -> citizen.getMaritalStatus() != MaritalStatus.MARRIED);
     }
 
     /**
