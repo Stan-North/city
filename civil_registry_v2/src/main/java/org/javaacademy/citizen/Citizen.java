@@ -33,7 +33,7 @@ public class Citizen extends Human {
     }
 
     /**
-     * Конструктор для преобразования ребенка(Human) в гражданина(Сшешяут)
+     * Конструктор для преобразования ребенка(Human) в гражданина(Citizen)
      */
     private Citizen(Human child) {
         super(child.getFirstName(), child.getLastName(), child.getMiddleName(), child.getGender());
@@ -43,8 +43,12 @@ public class Citizen extends Human {
         this.spouse = null;
     }
 
+    /**
+     * Переопределение метода для получения ребенка гражданином(Citizen)
+     */
     @Override
-    public Citizen makeChild(@NonNull String name, @NonNull String secondName, @NonNull String thirdName, @NonNull Gender gender, @NonNull Human otherParent) {
+    public Citizen makeChild(@NonNull String name, @NonNull String secondName, @NonNull String thirdName,
+                             @NonNull Gender gender, @NonNull Human otherParent) {
         return new Citizen(super.makeChild(name, secondName, thirdName, gender, otherParent));
     }
 

@@ -10,13 +10,13 @@ import java.math.BigDecimal;
 import static employee.ProgrammerRateRange.MAX_RATE;
 import static employee.ProgrammerRateRange.MIN_RATE;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Programmer extends Employee {
-    static int COMPARE_SEPARATOR = 0;
-    static String MIN_RATE_EXCEPTION = "Часовая ставка ниже минимальной < ";
-    static String MAX_RATE_EXCEPTION = "Часовая ставка выше максимальной > ";
-    static Double INITIAL_PROGRAMMER_TASK_LABOR_HOURS = 0.0;
-    static String REDUCED_LABOR_HOURS_EXCEPTION = "Часы работы нельзя уменьшить";
+    static final int COMPARE_SEPARATOR = 0;
+    static final String MIN_RATE_EXCEPTION = "Часовая ставка ниже минимальной < ";
+    static final String MAX_RATE_EXCEPTION = "Часовая ставка выше максимальной > ";
+    static final Double INITIAL_PROGRAMMER_TASK_LABOR_HOURS = 0.0;
+    static final String REDUCED_LABOR_HOURS_EXCEPTION = "Часы работы нельзя уменьшить";
 
     public Programmer(@NonNull String firstName, @NonNull String lastName,
                       @NonNull String middleName, @NonNull Gender gender) {
