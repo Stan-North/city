@@ -37,6 +37,8 @@ public class Citizen extends Human {
      */
     public Citizen(Human child) {
         super(child.getFirstName(), child.getLastName(), child.getMiddleName(), child.getGender());
+        this.setFather(child.getFather());
+        this.setMother(child.getMother());
         this.maritalStatus = MaritalStatus.NOT_MARRIED;
         this.spouse = null;
     }
