@@ -6,7 +6,6 @@ import lombok.Setter;
 import lombok.Getter;
 import lombok.AccessLevel;
 import lombok.NonNull;
-import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
 
 @Setter
@@ -55,7 +54,6 @@ public class Citizen extends Human {
     /**
      * Внутренний метод, проверяет передан ли супруг, если maritalStatus == MaritalStatus.MARRIED
      */
-    @SneakyThrows
     private void checkSpouse(Human spouse) {
         if (spouse == null) {
             throw new SponceNotFoundException(SPOUSE_NOT_FOUND);

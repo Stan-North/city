@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.TreeMap;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CivilRegistry {
@@ -21,14 +21,14 @@ public class CivilRegistry {
             Дата %s: количество свадеб - %d, количество разводов - %d, количество рождений - %d.
             """;
     String civilRegistryName;
-    HashMap<LocalDate, ArrayList<CivilActionRecord>> civilActionRecords;
+    TreeMap<LocalDate, ArrayList<CivilActionRecord>> civilActionRecords;
 
     /**
      * Конструктор для ЗАГС.
      */
     public CivilRegistry(String civilRegistryName) {
         this.civilRegistryName = civilRegistryName;
-        this.civilActionRecords = new HashMap<>();
+        this.civilActionRecords = new TreeMap<>();
     }
 
     /**
