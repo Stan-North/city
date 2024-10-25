@@ -2,7 +2,6 @@ package org.javaacademy;
 
 import human.Gender;
 import human.Human;
-import lombok.NonNull;
 import org.javaacademy.citizen.Citizen;
 import org.javaacademy.citizen.MaritalStatus;
 import org.javaacademy.civil_registry.CitizenIsMarriedException;

@@ -1,12 +1,10 @@
 package org.javaacademy.civil_registry;
 
 import lombok.AccessLevel;
-import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
 import org.javaacademy.citizen.Citizen;
 import org.javaacademy.citizen.MaritalStatus;
 
-import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -64,7 +62,8 @@ public class CivilRegistry {
     /**
      * Метод Регистрация брака
      */
-    public void marriageRegistration(Citizen male, Citizen female, LocalDate dateRecord) throws CitizenIsMarriedException {
+    public void marriageRegistration(Citizen male, Citizen female, LocalDate dateRecord)
+            throws CitizenIsMarriedException {
         CivilActionRecord record = new CivilActionRecord(dateRecord, CivilActionType.MARRIAGE_REGISTRATION,
                 male, female);
         if (isAnyoneMarried(male, female)) {
@@ -78,7 +77,8 @@ public class CivilRegistry {
     /**
      * Метод расторжение брака
      */
-    public void divorceRegistration(Citizen male, Citizen female, LocalDate dateRecord) throws CitizenIsMarriedException {
+    public void divorceRegistration(Citizen male, Citizen female, LocalDate dateRecord)
+            throws CitizenIsMarriedException {
         CivilActionRecord record = new CivilActionRecord(dateRecord, CivilActionType.DIVORCE_REGISTRATION,
                 male, female);
         if (isAnyoneNotMarried(male, female)) {
