@@ -4,9 +4,11 @@ import lombok.SneakyThrows;
 import org.javaacademy.citizen.Citizen;
 import org.javaacademy.citizen.MaritalStatus;
 
+import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class CivilRegistry {
@@ -62,8 +64,8 @@ public class CivilRegistry {
                 male, female);
         checkMarriedStatus(male, female);
         addActionInRecord(record);
-        male.setMaritalStatus(MaritalStatus.MARRIED);
-        female.setMaritalStatus(MaritalStatus.MARRIED);
+        setMaritalStatus(MaritalStatus.MARRIED, male, female);
+        setSpouse(male, female);
     }
 
     /**
@@ -72,10 +74,10 @@ public class CivilRegistry {
     public void divorceRegistration(Citizen male, Citizen female, LocalDate dateRecord) {
         CivilActionRecord record = new CivilActionRecord(dateRecord, CivilActionType.DIVORCE_REGISTRATION,
                 male, female);
-        checkDeviorcedStatus(male, female);
+        checkDivorceStatus(male, female);
         addActionInRecord(record);
-        male.setMaritalStatus(MaritalStatus.DIVORCED);
-        female.setMaritalStatus(MaritalStatus.DIVORCED);
+        removeSpouse(male, female);
+        setMaritalStatus(MaritalStatus.DIVORCED, male, female);
     }
 
     /**
@@ -91,7 +93,7 @@ public class CivilRegistry {
     }
 
     /**
-     * Внутренний метод проверки состоит кто то кандидатов в браке или нет
+     * Внутренний метод проверки состоит кто-то кандидатов в браке или нет
      */
     @SneakyThrows
     private void checkMarriedStatus(Citizen firstCandidate, Citizen secondCandidate) {
@@ -109,7 +111,7 @@ public class CivilRegistry {
      * Внутренний метод проверки разведен или не в браке, кто то из кандидатов
      */
     @SneakyThrows
-    private void checkDeviorcedStatus(Citizen firstCandidate, Citizen secondCandidate) {
+    private void checkDivorceStatus(Citizen firstCandidate, Citizen secondCandidate) {
         if (firstCandidate.getMaritalStatus() != MaritalStatus.MARRIED) {
             throw new CitizenIsMarriedException("%s не состоит в браке"
                     .formatted(firstCandidate.getFullName()));
@@ -118,5 +120,29 @@ public class CivilRegistry {
             throw new CitizenIsMarriedException("%s не состоит в браке"
                     .formatted(firstCandidate.getFullName()));
         }
+    }
+
+    /**
+     * Внутренний метод обнуляет супругов(spouse)
+     */
+    private void removeSpouse(Citizen... citizens) {
+        Arrays.stream(citizens)
+                .forEach(citizen -> citizen.setSpouse(null));
+    }
+
+    /**
+     * Внутренний метод изменяет семейное положение(MaritalStatus)
+     */
+    private void setMaritalStatus(MaritalStatus status, Citizen... citizens) {
+        Arrays.stream(citizens)
+                .forEach(citizen -> citizen.setMaritalStatus(status));
+    }
+
+    /**
+     * Внутренний метод устанавливает супругов(spouse)
+     */
+    private void setSpouse(Citizen firstCandidate, Citizen secondCandidate) {
+        firstCandidate.setSpouse(secondCandidate);
+        secondCandidate.setSpouse(firstCandidate);
     }
 }
