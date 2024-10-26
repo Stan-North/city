@@ -4,12 +4,14 @@ import human.Gender;
 import human.Human;
 import lombok.Setter;
 import lombok.Getter;
+import lombok.EqualsAndHashCode;
 import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
 @Setter
 @Getter
+@EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Citizen extends Human {
     static final String SPOUSE_NOT_FOUND = "Не указан супруг(а)";
@@ -46,9 +48,9 @@ public class Citizen extends Human {
      * Переопределение метода для получения ребенка гражданином(Citizen)
      */
     @Override
-    public Citizen makeChild(@NonNull String name, @NonNull String secondName, @NonNull String thirdName,
+    public Citizen makeChild(@NonNull String name, @NonNull String lastName, @NonNull String middleName,
                              @NonNull Gender gender, @NonNull Human otherParent) {
-        return new Citizen(super.makeChild(name, secondName, thirdName, gender, otherParent));
+        return new Citizen(super.makeChild(name, lastName, middleName, gender, otherParent));
     }
 
     /**
