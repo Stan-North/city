@@ -1,6 +1,6 @@
 package com.javaacademy.unit.citizen;
 
-import human.Gender;
+import org.javaacademy.human.Gender;
 import org.javaacademy.citizen.Citizen;
 import org.javaacademy.citizen.MaritalStatus;
 import org.junit.jupiter.api.Assertions;
@@ -9,35 +9,6 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("Тестирование класса гражданин(Citizen)")
 public class CitizenTest {
-
-    @Test
-    @DisplayName("Успешное рождение гражданина")
-    public void makeChildCitizenClassSuccess() {
-        Citizen man = new Citizen(
-                "Отец",
-                "Отцов",
-                "Отцович",
-                Gender.MALE,
-                MaritalStatus.NOT_MARRIED,
-                null);
-        Citizen woman = new Citizen(
-                "Мать",
-                "Родящая",
-                "Живо",
-
-                Gender.FEMALE,
-                MaritalStatus.NOT_MARRIED,
-                null);
-
-        Citizen actual = man.makeChild(
-                "Сын",
-                "Сынов",
-                "Сынович",
-                Gender.MALE,
-                woman);
-
-        Assertions.assertInstanceOf(Citizen.class, actual);
-    }
 
     @Test
     @DisplayName("Успешная проверка полей ребенка-гражданина")

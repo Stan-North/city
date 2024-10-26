@@ -1,4 +1,4 @@
-package human;
+package org.javaacademy.human;
 
 public enum Gender {
     MALE,

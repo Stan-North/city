@@ -1,4 +1,4 @@
-package human;
+package org.javaacademy.human;
 
 import java.util.ArrayList;
 import java.util.List;

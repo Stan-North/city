@@ -1,12 +1,11 @@
-package employee;
+package org.javaacademy.employee;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import static employee.TaskStatusType.IN_PROGRESS;
-
+import static org.javaacademy.employee.TaskStatusType.IN_PROGRESS;
 
 @Setter(value = AccessLevel.PROTECTED)
 @Getter()

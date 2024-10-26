@@ -1,7 +1,7 @@
 package org.javaacademy.citizen;
 
-import human.Gender;
-import human.Human;
+import org.javaacademy.human.Gender;
+import org.javaacademy.human.Human;
 import lombok.Setter;
 import lombok.Getter;
 import lombok.EqualsAndHashCode;

@@ -1,7 +1,7 @@
-import human.Human;
-import human.Gender;
+package org.javaacademy;
 
-
+import org.javaacademy.human.Human;
+import org.javaacademy.human.Gender;
 
 public class RunnerTest {
     public static void main(String[] args) {
