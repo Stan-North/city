@@ -2,7 +2,10 @@ package human;
 
 import java.util.ArrayList;
 import java.util.List;
-import lombok.*;
+import lombok.Getter;
+import lombok.AccessLevel;
+import lombok.NonNull;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.lang3.StringUtils;
 
