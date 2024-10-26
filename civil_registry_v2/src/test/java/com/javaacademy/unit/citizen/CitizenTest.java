@@ -1,7 +1,6 @@
 package com.javaacademy.unit.citizen;
 
 import human.Gender;
-import human.Human;
 import org.javaacademy.citizen.Citizen;
 import org.javaacademy.citizen.MaritalStatus;
 import org.junit.jupiter.api.Assertions;
@@ -59,14 +58,6 @@ public class CitizenTest {
                 Gender.FEMALE,
                 MaritalStatus.NOT_MARRIED,
                 null);
-        Citizen woman2 = new Citizen(
-                "Мать",
-                "Родящая",
-                "Живо",
-
-                Gender.FEMALE,
-                MaritalStatus.NOT_MARRIED,
-                null);
         Citizen expected = new Citizen(
                 "Сын",
                 "Сынов",
@@ -85,7 +76,7 @@ public class CitizenTest {
                 Gender.MALE,
                 woman);
 
-        Assertions.assertTrue(expected.equals(actual), "Атрибуты созданного ребенка-гражданина неравны");
+        Assertions.assertEquals(expected, actual, "Атрибуты созданного ребенка-гражданина неравны");
     }
 
     @Test
@@ -129,6 +120,6 @@ public class CitizenTest {
                 Gender.MALE,
                 woman2);
 
-        Assertions.assertFalse(expected.equals(actual), "Атрибуты созданного ребенка-гражданина равны");
+        Assertions.assertNotEquals(expected, actual, "Атрибуты созданного ребенка-гражданина равны");
     }
 }
