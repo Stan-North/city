@@ -1,14 +1,14 @@
-package employee;
+package org.javaacademy.employee;
 
-import human.Gender;
+import org.javaacademy.human.Gender;
 import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
 
-import static employee.ProgrammerRateRange.MAX_RATE;
-import static employee.ProgrammerRateRange.MIN_RATE;
+import static org.javaacademy.employee.ProgrammerRateRange.MAX_RATE;
+import static org.javaacademy.employee.ProgrammerRateRange.MIN_RATE;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Programmer extends Employee {

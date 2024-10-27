@@ -1,7 +1,7 @@
-package employee;
+package org.javaacademy.employee;
 
-import human.Gender;
-import human.Human;
+import org.javaacademy.human.Gender;
+import org.javaacademy.human.Human;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;

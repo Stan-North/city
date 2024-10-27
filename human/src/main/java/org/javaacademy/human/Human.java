@@ -1,8 +1,9 @@
-package human;
+package org.javaacademy.human;
 
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
+import lombok.EqualsAndHashCode;
 import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import lombok.experimental.FieldDefaults;
 import org.apache.commons.lang3.StringUtils;
 
 @Getter
+@EqualsAndHashCode
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Human {
     private static final String SPACE = " ";
@@ -88,10 +90,10 @@ public class Human {
     /**
      * Создание ребенка
      */
-    public Human makeChild(@NonNull String name, @NonNull String secondName, @NonNull String thirdName,
+    public Human makeChild(@NonNull String name, @NonNull String lastName, @NonNull String middleName,
                            @NonNull Gender gender, @NonNull Human otherParent) {
         if (isParentsHasDifferentGender(this, otherParent)) {
-            Human child = new Human(name, secondName, thirdName, gender);
+            Human child = new Human(name, lastName, middleName, gender);
             setParentsAndChild(this, otherParent, child);
             return child;
         } else {
