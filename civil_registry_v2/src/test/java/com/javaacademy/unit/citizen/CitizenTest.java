@@ -70,7 +70,7 @@ public class CitizenTest {
         Citizen woman2 = new Citizen(
                 "Мать",
                 "Родящая",
-                "Живо",
+                "Не",
                 Gender.FEMALE,
                 MaritalStatus.NOT_MARRIED,
                 null);
