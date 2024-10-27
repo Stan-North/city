@@ -23,10 +23,10 @@ public class Citizen extends Human {
      */
 
 
-    public Citizen(String firstName,
-                   String lastName,
-                   String middleName,
-                   Gender gender,
+    public Citizen(@NonNull String firstName,
+                   @NonNull String lastName,
+                   @NonNull String middleName,
+                   @NonNull Gender gender,
                    @NonNull MaritalStatus maritalStatus,
                    Citizen spouse) {
         super(firstName, lastName, middleName, gender);
