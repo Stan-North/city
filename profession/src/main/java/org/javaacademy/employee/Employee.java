@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Getter
 public class Employee extends Human {
     private BigDecimal rate;
-    private BigDecimal moneyEarned;
+    private BigDecimal moneyEarned = BigDecimal.ZERO;
 
     public Employee(@NonNull String firstName, @NonNull String lastName,
                     @NonNull String middleName, @NonNull Gender gender) {
