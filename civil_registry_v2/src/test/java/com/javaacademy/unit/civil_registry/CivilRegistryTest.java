@@ -76,7 +76,7 @@ public class CivilRegistryTest {
 
         civilRegistry.marriageRegistration(man, woman, date);
 
-        Assertions.assertEquals(expected, man.getMaritalStatus(), "По итогу не состоит в браке");
+        Assertions.assertEquals(expected, man.getMaritalStatus(), "Не состоит в браке");
     }
 
     @Test
@@ -122,5 +122,6 @@ public class CivilRegistryTest {
         civilRegistry.divorceRegistration(man, woman, date);
 
         Assertions.assertNull(man.getSpouse(), "Не удален супруг после развода");
+        Assertions.assertNull(woman.getSpouse(), "Не удален супруг после развода");
     }
 }
