@@ -34,9 +34,9 @@ public class CitizenTest {
 
     private Citizen getMan2() {
         return new Citizen(
-                "Мужик",
-                "Это",
-                "Левый",
+                "Иван",
+                "Иванов2",
+                "Иванович",
                 Gender.MALE,
                 MaritalStatus.NOT_MARRIED,
                 null);
@@ -44,9 +44,9 @@ public class CitizenTest {
 
     private Citizen getWoman2() {
         return new Citizen(
-                "Нет",
-                "Нет",
-                "Нет",
+                "Екатерина",
+                "Петрова",
+                "Ивановна",
                 Gender.FEMALE,
                 MaritalStatus.NOT_MARRIED,
                 null);
