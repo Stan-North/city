@@ -1,62 +1,34 @@
 package com.javaacademy.unit.citizen;
 
+import com.javaacademy.unit.util.TestUtil;
 import org.javaacademy.citizen.Citizen;
 import org.javaacademy.citizen.MaritalStatus;
 import org.javaacademy.citizen.SpouseNotFoundException;
 import org.javaacademy.human.Gender;
 import org.javaacademy.human.GenderEqualsException;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Тестирование класса гражданин(Citizen)")
 public class CitizenTest {
+    Citizen man;
+    Citizen man2;
+    Citizen woman;
+    Citizen woman2;
 
-    private Citizen getMan() {
-        return new Citizen(
-                "Отец",
-                "Отцов",
-                "Отцович",
-                Gender.MALE,
-                MaritalStatus.NOT_MARRIED,
-                null);
-    }
-
-    private Citizen getWoman() {
-        return new Citizen(
-                "Мать",
-                "Родящая",
-                "Живо",
-                Gender.FEMALE,
-                MaritalStatus.NOT_MARRIED,
-                null);
-    }
-
-    private Citizen getMan2() {
-        return new Citizen(
-                "Иван",
-                "Иванов2",
-                "Иванович",
-                Gender.MALE,
-                MaritalStatus.NOT_MARRIED,
-                null);
-    }
-
-    private Citizen getWoman2() {
-        return new Citizen(
-                "Екатерина",
-                "Петрова",
-                "Ивановна",
-                Gender.FEMALE,
-                MaritalStatus.NOT_MARRIED,
-                null);
+    @BeforeEach
+    public void setUp() {
+        man = TestUtil.getMan();
+        woman = TestUtil.getWoman();
+        man2 = TestUtil.getMan2();
+        woman2 = TestUtil.getWoman2();
     }
 
     @Test
     @DisplayName("Успешная проверка полей ребенка-гражданина")
     public void makeChildCitizenSuccess() {
-        Citizen man = getMan();
-        Citizen woman = getWoman();
         Citizen expected = new Citizen(
                 "Сын",
                 "Сынов",
@@ -80,9 +52,6 @@ public class CitizenTest {
     @Test
     @DisplayName("Негативный тест проверки полей ребенка-гражданина FirstName")
     public void makeChildCitizenFirstNameNegative() {
-        Citizen man = getMan();
-        Citizen woman = getWoman();
-        Citizen woman2 = getWoman2();
         Citizen expected = new Citizen(
                 "Сын",
                 "Сынов",
@@ -106,8 +75,6 @@ public class CitizenTest {
     @Test
     @DisplayName("Негативный тест проверки полей ребенка-гражданина lastName")
     public void makeChildCitizenLastNameNegative() {
-        Citizen man = getMan();
-        Citizen woman = getWoman();
         Citizen expected = new Citizen(
                 "Сын",
                 "Сынов",
@@ -131,8 +98,6 @@ public class CitizenTest {
     @Test
     @DisplayName("Негативный тест проверки полей ребенка-гражданина middleName")
     public void makeChildCitizenMiddleNameNegative() {
-        Citizen man = getMan();
-        Citizen woman = getWoman();
         Citizen expected = new Citizen(
                 "Сын",
                 "Сынов",
@@ -156,8 +121,6 @@ public class CitizenTest {
     @Test
     @DisplayName("Негативный тест проверки полей ребенка-гражданина gender")
     public void makeChildCitizenGenderNegative() {
-        Citizen man = getMan();
-        Citizen woman = getWoman();
         Citizen expected = new Citizen(
                 "Сын",
                 "Сынов",
@@ -181,9 +144,6 @@ public class CitizenTest {
     @Test
     @DisplayName("Негативный тест проверки полей ребенка-гражданина otherParent")
     public void makeChildCitizenOtherParentNegative() {
-        Citizen man = getMan();
-        Citizen woman = getWoman();
-        Citizen woman2 = getWoman2();
         Citizen expected = new Citizen(
                 "Сын",
                 "Сынов",
@@ -258,9 +218,6 @@ public class CitizenTest {
     @Test
     @DisplayName("Проверка пола родителей при рождении ребенка-гражданина")
     public void makeChildGenderExceptionThrow() {
-        Citizen man = getMan();
-        Citizen man2 = getMan2();
-
         Assertions.assertThrows(GenderEqualsException.class, () -> man.makeChild(
                         "Сын",
                         "Сынов",
@@ -273,8 +230,6 @@ public class CitizenTest {
     @Test
     @DisplayName("Проверка добавления родителей, если ребенка-гражданина родила мать")
     public void makeChildCitizenMotherFatherReplace() {
-        Citizen man = getMan();
-        Citizen woman = getWoman();
         Citizen expected = new Citizen(
                 "Сын",
                 "Сынов",
@@ -375,9 +330,6 @@ public class CitizenTest {
     @DisplayName("Проверка NullPointerException, " +
             "если при создании ребенка-гражданина есть null в NonNull firstName")
     public void makeChildCitizenNoNNullFirstNameException() {
-        Citizen man = getMan();
-        Citizen woman = getWoman();
-
         Assertions.assertThrows(NullPointerException.class, () -> woman.makeChild(
                         null,
                         "Сынов",
@@ -391,9 +343,6 @@ public class CitizenTest {
     @DisplayName("Проверка NullPointerException, " +
             "если при создании ребенка-гражданина есть null в NonNull lastName")
     public void makeChildCitizenNoNNullLastNameException() {
-        Citizen man = getMan();
-        Citizen woman = getWoman();
-
         Assertions.assertThrows(NullPointerException.class, () -> woman.makeChild(
                         "Сын",
                         null,
@@ -407,9 +356,6 @@ public class CitizenTest {
     @DisplayName("Проверка NullPointerException, " +
             "если при создании ребенка-гражданина есть null в NonNull middleName")
     public void makeChildCitizenNoNNullMiddleNameException() {
-        Citizen man = getMan();
-        Citizen woman = getWoman();
-
         Assertions.assertThrows(NullPointerException.class, () -> woman.makeChild(
                 "Сын",
                 "Сынов",
@@ -422,9 +368,6 @@ public class CitizenTest {
     @DisplayName("Проверка NullPointerException, " +
             "если при создании ребенка-гражданина есть null в NonNull gender")
     public void makeChildCitizenNoNNullGenderException() {
-        Citizen man = getMan();
-        Citizen woman = getWoman();
-
         Assertions.assertThrows(NullPointerException.class, () -> woman.makeChild(
                         "Сын",
                         "Сынов",
@@ -438,8 +381,6 @@ public class CitizenTest {
     @DisplayName("Проверка NullPointerException, " +
             "если при создании ребенка-гражданина есть null в NonNull otherParent")
     public void makeChildCitizenNoNNullOtherParentException() {
-        Citizen woman = getWoman();
-
         Assertions.assertThrows(NullPointerException.class, () -> woman.makeChild(
                 "Сын",
                 "Сынов",
