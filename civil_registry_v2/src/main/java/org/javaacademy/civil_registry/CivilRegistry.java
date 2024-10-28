@@ -1,6 +1,7 @@
 package org.javaacademy.civil_registry;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 import org.javaacademy.citizen.Citizen;
 import org.javaacademy.citizen.MaritalStatus;
@@ -20,6 +21,7 @@ public class CivilRegistry {
             Статистика по ЗАГС: %s
             Дата %s: количество свадеб - %d, количество разводов - %d, количество рождений - %d.
             """;
+    @Getter
     String civilRegistryName;
     TreeMap<LocalDate, ArrayList<CivilActionRecord>> civilActionRecords;
 
