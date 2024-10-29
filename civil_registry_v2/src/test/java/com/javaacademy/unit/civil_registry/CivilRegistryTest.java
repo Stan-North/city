@@ -7,14 +7,18 @@ import lombok.experimental.FieldDefaults;
 import org.javaacademy.citizen.Citizen;
 import org.javaacademy.citizen.MaritalStatus;
 import org.javaacademy.civil_registry.CitizenIsMarriedException;
+import org.javaacademy.civil_registry.CivilActionRecord;
+import org.javaacademy.civil_registry.CivilActionType;
 import org.javaacademy.civil_registry.CivilRegistry;
-import org.javaacademy.human.Gender;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Field;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.TreeMap;
 
 @DisplayName("Тестирование класса ЗАГС(CivilRegistry)")
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -41,22 +45,6 @@ public class CivilRegistryTest {
     void checkCivilRegistry() {
         Assertions.assertEquals(civilRegistryName, civilRegistry.getCivilRegistryName(),
                 "Имема загса не соответствует");
-    }
-
-//    childRegistration
-
-    @Test
-    @DisplayName("Успешная проверка полей ребенка-гражданина")
-    public void childRegistrationSuccess() {
-        LocalDate date = LocalDate.now();
-        Citizen man = new Citizen("Иван", "Иванов1", "Иванович",
-                Gender.MALE, MaritalStatus.NOT_MARRIED, null);
-        Citizen woman = new Citizen("Екатерина", "Петрова", "Ивановна",
-                Gender.FEMALE, MaritalStatus.NOT_MARRIED, null);
-        Citizen child = man.makeChild("Петр", "Иванов",
-                "Иванович", Gender.MALE, woman);
-
-
     }
 
     @Test
@@ -123,5 +111,58 @@ public class CivilRegistryTest {
 
         Assertions.assertNull(man.getSpouse(), "Не удален супруг после развода");
         Assertions.assertNull(woman.getSpouse(), "Не удален супруг после развода");
+    }
+
+    @SneakyThrows(Exception.class)
+    private CivilActionRecord getCivilActionRecordByIndexZero() {
+        Field civilActionRecordsField = CivilRegistry.class.getDeclaredField("civilActionRecords");
+        civilActionRecordsField.setAccessible(true);
+        TreeMap<LocalDate, ArrayList<CivilActionRecord>> civilActionRecords =
+                (TreeMap) civilActionRecordsField.get(civilRegistry);
+        ArrayList<CivilActionRecord> civilActionRecordsList = civilActionRecords.get(date);
+
+        return civilActionRecordsList.get(0);
+    }
+
+    @Test
+    @DisplayName("Добавление действия в журнал регистрации")
+    public void childRegistrationAddActionInRecordSuccess() {
+        CivilActionRecord expected =
+                new CivilActionRecord(date, CivilActionType.BIRTH_REGISTRATION, child, man, woman);
+
+        civilRegistry.childRegistration(child, man, woman, date);
+        CivilActionRecord actual = getCivilActionRecordByIndexZero();
+
+        Assertions.assertEquals(expected, actual, "Запись в акте гражданского состояния не равна");
+    }
+
+    @Test
+    @SneakyThrows(CitizenIsMarriedException.class)
+    @DisplayName("Добавление действия в журнал регистрации")
+    public void marriageRegistrationAddActionInRecordSuccess() {
+        CivilActionRecord expected =
+                new CivilActionRecord(date, CivilActionType.MARRIAGE_REGISTRATION, man, woman);
+
+        civilRegistry.marriageRegistration(man, woman, date);
+        CivilActionRecord actual = getCivilActionRecordByIndexZero();
+
+        Assertions.assertEquals(expected, actual, "Запись в акте гражданского состояния не равна");
+    }
+
+    @Test
+    @SneakyThrows(CitizenIsMarriedException.class)
+    @DisplayName("Добавление действия в журнал регистрации")
+    public void divorceRegistrationAddActionInRecordSuccess() {
+        man.setMaritalStatus(MaritalStatus.MARRIED);
+        woman.setMaritalStatus(MaritalStatus.MARRIED);
+        man.setSpouse(woman);
+        woman.setSpouse(man);
+        CivilActionRecord expected =
+                new CivilActionRecord(date, CivilActionType.DIVORCE_REGISTRATION, man, woman);
+
+        civilRegistry.divorceRegistration(man, woman, date);
+        CivilActionRecord actual = getCivilActionRecordByIndexZero();
+
+        Assertions.assertEquals(expected, actual, "Запись в акте гражданского состояния не равна");
     }
 }
