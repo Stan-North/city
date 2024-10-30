@@ -44,16 +44,9 @@ public class Programmer extends Employee {
     }
 
     /**
-     * Задача взята в работу, переводится в статус "в работе", устанавливаются часы в ноль.
+     * Задача сделана, переводится в статус "завершена".
      */
-    public void takeTask(@NonNull Task task) {
-        task.setStatus(TaskStatusType.IN_PROGRESS);
-    }
-
-    /**
-     * Задача сделана, переводится в статус "завершена", устанавливаются часы, но не меньше имеющихся по задаче.
-     */
-    public void doneTask(@NonNull Task task) throws LaborHoursException {
+    public void takeTask(@NonNull Task task) throws LaborHoursException {
         task.setStatus(TaskStatusType.COMPLETED);
     }
 }

@@ -3,6 +3,8 @@ package org.javaacademy;
 import lombok.AccessLevel;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
+import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.javaacademy.employee.Employee;
 import org.javaacademy.employee.Manager;
 import org.javaacademy.employee.Programmer;
@@ -19,33 +21,37 @@ import java.util.Arrays;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Company {
-    private static final Double INITIAL_TIME = 0.0;
-    private static final String TASK_DONE_MESSAGE = " - сделана.";
-    private static final String EXPENSES_MESSAGE = "Затраты: ";
-    private static final Double MANAGER_TASK_TIME_MULTIPLIER = 0.1;
-    private static final int NUMBER_OF_DECIMAL_SPACES = 2;
-    private static final String LIST_OF_TASKS_MESSAGE = "Список выполненных задач у компании:";
-    String companyName;
-    Manager manager;
-    List<Programmer> programmersList;
-    HashMap<Programmer, List<Task>> completedTasks;
-    HashMap<Employee, Double> timeTracking;
+    static final Double INITIAL_TIME = 0.0;
+    static final String TASK_DONE_MESSAGE = " - сделана.";
+    static final String EXPENSES_MESSAGE = "Затраты: ";
+    static final Double MANAGER_TASK_TIME_MULTIPLIER = 0.1;
+    static final int NUMBER_OF_DECIMAL_SPACES = 2;
+    static final String LIST_OF_TASKS_MESSAGE = "Список выполненных задач у компании:";
+    static final String REPORT_DIVIDER = " - ";
+    final String companyName;
+    final Manager manager;
+    final List<Programmer> programmersList = new ArrayList<>();
+    final MultiValuedMap<Programmer, Task> completedTasks = new ArrayListValuedHashMap<>();
+    final HashMap<Employee, Double> timeTracking = new HashMap<>();
     BigDecimal expenses = BigDecimal.ZERO;
-    LinkedList<Task> weekTaskList;
+    LinkedList<Task> weekTaskList = new LinkedList<>();
 
     public Company(@NonNull String companyName, @NonNull Manager manager,
-                   @NonNull BigDecimal programmersRate, Programmer... programmers) {
+                   @NonNull BigDecimal programmersRate, @NonNull Programmer... programmers) {
         this.companyName = companyName;
         this.manager = manager;
-        programmersList = new ArrayList<>();
-        completedTasks = new HashMap<>();
-        timeTracking = new HashMap<>();
-        Arrays.stream(programmers).forEach(programmer -> programmer.setRate(programmersRate));
-        programmersList.addAll(Arrays.asList(programmers));
-        programmersList.forEach(programmer -> completedTasks.put(programmer, new ArrayList<>()));
-        programmersList.forEach(programmer -> timeTracking.put(programmer, INITIAL_TIME));
+        initProgrammersList(programmersRate, programmers);
         timeTracking.put(manager, INITIAL_TIME);
         weekTaskList = new LinkedList<>();
+    }
+
+    /**
+     * Инициализация списков с программистами
+     */
+    private void initProgrammersList(BigDecimal programmersRate, Programmer... programmers) {
+        programmersList.addAll(Arrays.asList(programmers));
+        programmersList.forEach(programmer -> programmer.setRate(programmersRate));
+        programmersList.forEach(programmer -> timeTracking.put(programmer, INITIAL_TIME));
     }
 
     /**
@@ -63,7 +69,6 @@ public class Company {
             Task task = weekTaskList.pollFirst();
             if (task != null) {
                 programmer.takeTask(task);
-                programmer.doneTask(task);
                 System.out.println(task.getDescription() + TASK_DONE_MESSAGE);
                 addTimeToEmployee(programmer, task);
                 addTaskToList(programmer, task);
@@ -83,13 +88,7 @@ public class Company {
      * Добавление задачи в список выполненных задач
      */
     private void addTaskToList(Programmer programmer, Task task) {
-        if (completedTasks.containsKey(programmer)) {
-            completedTasks.get(programmer).add(task);
-        } else {
-            ArrayList<Task> tasks = new ArrayList<>();
-            tasks.add(task);
-            completedTasks.put(programmer, tasks);
-        }
+        completedTasks.put(programmer, task);
     }
 
     /**
@@ -118,19 +117,14 @@ public class Company {
     }
 
     public void paySalaries() {
-        timeTracking.forEach((employee, aDouble) -> payForWeek(employee));
+        timeTracking.forEach(this::payForWeek);
         timeTracking.clear();
     }
 
-    private void payForWeek(Employee employee) {
-        Double weekHours = timeTracking.get(employee);
-        BigDecimal moneyForWeek = employee.getRate().multiply(BigDecimal.valueOf(weekHours));
-        if (employee.getMoneyEarned().equals(null)) {
-            employee.setMoneyEarned(moneyForWeek);
-        } else {
-            employee.setMoneyEarned(employee.getMoneyEarned().add(moneyForWeek));
-            expenses = expenses.add(moneyForWeek);
-        }
+    private void payForWeek(Employee employee, double workedHours) {
+        BigDecimal moneyForWeek = employee.getRate().multiply(BigDecimal.valueOf(workedHours));
+        employee.setMoneyEarned(employee.getMoneyEarned().add(moneyForWeek));
+        expenses = expenses.add(moneyForWeek);
     }
 
     public void companyInfo() {
@@ -139,9 +133,11 @@ public class Company {
                 companyName + "\n"
                     + EXPENSES_MESSAGE + roundedValue.toEngineeringString() + "\n"
                     + LIST_OF_TASKS_MESSAGE);
-        completedTasks.forEach((programmer, tasks) -> {
-            System.out.println(programmer.getFullName());
-            System.out.println(tasks);
-        });
+        for (Programmer programmer : completedTasks.keySet()) {
+            System.out.println(programmer.getFullName() + REPORT_DIVIDER);
+            for (Task task : completedTasks.get(programmer)) {
+                System.out.println(task);
+            }
+        }
     }
 }

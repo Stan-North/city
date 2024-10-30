@@ -16,7 +16,7 @@
     </modules>
 
     <properties>
-        <module.version>1.0.0</module.version>
+        <module.human.version>1.0.0</module.human.version>
         <module.profession.version>1.1.0</module.profession.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -199,15 +199,9 @@
     <profiles>
         <profile>
             <id>prom</id>
-            <properties>
-                <lane>prom</lane>
-            </properties>
         </profile>
         <profile>
             <id>test</id>
-            <properties>
-                <lane>test</lane>
-            </properties>
         </profile>
     </profiles>
 

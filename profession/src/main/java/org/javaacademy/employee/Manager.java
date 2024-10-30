@@ -13,11 +13,4 @@ public class Manager extends Employee {
         super(firstName, lastName, middleName, gender);
         this.setRate(MANAGER_RATE);
     }
-
-
-    //5.2. Так как профессии менеджера нет,
-    // то внутри модуля profession создаем менеджера.
-    // Ставка 10_000.
-    //  Так же у любого СОТРУДНИКА есть сумма заработанных денег.
-    //  Поднимаем версию модуля profession.
 }
