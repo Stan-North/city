@@ -1,15 +1,11 @@
-package org.javaacademy.unit.civil_registry;
+package org.javaacademy.civil_registry;
 
-import org.javaacademy.unit.util.TestUtil;
+import org.javaacademy.TestUtil;
 import lombok.AccessLevel;
 import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
 import org.javaacademy.citizen.Citizen;
 import org.javaacademy.citizen.MaritalStatus;
-import org.javaacademy.civil_registry.CitizenIsMarriedException;
-import org.javaacademy.civil_registry.CivilActionRecord;
-import org.javaacademy.civil_registry.CivilActionType;
-import org.javaacademy.civil_registry.CivilRegistry;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -49,7 +45,7 @@ public class CivilRegistryTest {
     @DisplayName("Проверка конструктора ЗАГСА")
     void checkCivilRegistry() {
         Assertions.assertEquals(civilRegistryName, civilRegistry.getCivilRegistryName(),
-                "Имема загса не соответствует");
+                "Имена загса не соответствует");
     }
 
     @Test

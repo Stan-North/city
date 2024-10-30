@@ -1,9 +1,6 @@
-package org.javaacademy.unit.citizen;
+package org.javaacademy.citizen;
 
-import org.javaacademy.unit.util.TestUtil;
-import org.javaacademy.citizen.Citizen;
-import org.javaacademy.citizen.MaritalStatus;
-import org.javaacademy.citizen.SpouseNotFoundException;
+import org.javaacademy.TestUtil;
 import org.javaacademy.human.Gender;
 import org.javaacademy.human.GenderEqualsException;
 import org.junit.jupiter.api.Assertions;

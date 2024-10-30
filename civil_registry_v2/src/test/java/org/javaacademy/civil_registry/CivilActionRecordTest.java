@@ -66,8 +66,10 @@ class CivilActionRecordTest {
     void emptyCitizenListSuccess() {
         CivilActionRecord emptyListInRecord = new CivilActionRecord(actionDate, actionType);
 
-        Assertions.assertNotNull(emptyListInRecord.getCitizenList(), "Список граждан не должен быть null");
-        Assertions.assertTrue(emptyListInRecord.getCitizenList().isEmpty(), "Список граждан не должен быть пустым");
+        Assertions.assertNotNull(emptyListInRecord.getCitizenList(),
+                "Список граждан не должен быть null");
+        Assertions.assertTrue(emptyListInRecord.getCitizenList().isEmpty(),
+                "Список граждан не должен быть пустым");
     }
 
     @Test
@@ -75,8 +77,8 @@ class CivilActionRecordTest {
     void actionDateInRecordSuccess() {
         Assertions.assertEquals(actionDate, civilActionRecord1.getActionDate(),
                 "Дата должна совпадать с установленной датой");
-        Assertions.assertEquals(actionDate.hashCode(), civilActionRecord1.getActionDate().
-                hashCode(), "hash дат должен совпадать");
+        Assertions.assertEquals(actionDate.hashCode(), civilActionRecord1.getActionDate().hashCode(),
+                "hash дат должен совпадать");
     }
 
     @Test
