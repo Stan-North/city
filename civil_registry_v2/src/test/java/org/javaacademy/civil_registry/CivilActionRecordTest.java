@@ -113,7 +113,6 @@ class CivilActionRecordTest {
     void equalsSymmetric() {
         Assertions.assertEquals(civilActionRecord1, civilActionRecord2, "Equals должен быть симметричным");
         Assertions.assertEquals(civilActionRecord2, civilActionRecord1, "Equals должен быть симметричным");
-
     }
 
     @Test
