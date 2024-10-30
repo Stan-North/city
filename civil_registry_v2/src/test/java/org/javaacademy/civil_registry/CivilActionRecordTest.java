@@ -53,9 +53,19 @@ class CivilActionRecordTest {
         }
 
     @Test
+    @DisplayName("Проверка типа действия на null")
+    void сitizenNotNull() {
+        Citizen[] citizenArray = null;
+
+        Assertions.assertThrowsExactly(NullPointerException.class,
+                () -> new CivilActionRecord(actionDate, actionType, citizenArray));
+    }
+
+    @Test
     @DisplayName("Проверка на пустой список")
     void emptyCitizenListSuccess() {
         CivilActionRecord emptyListInRecord = new CivilActionRecord(actionDate, actionType);
+
         Assertions.assertNotNull(emptyListInRecord.getCitizenList(), "Список граждан не должен быть null");
         Assertions.assertTrue(emptyListInRecord.getCitizenList().isEmpty(), "Список граждан не должен быть пустым");
     }
@@ -125,6 +135,4 @@ class CivilActionRecordTest {
         Assertions.assertNotEquals(civilActionRecord1.hashCode(), civilActionRecordNotEqual.hashCode(),
                 "hash должен быть разным");
     }
-
-
 }
