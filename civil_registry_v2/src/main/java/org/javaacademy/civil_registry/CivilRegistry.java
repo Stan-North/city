@@ -1,6 +1,7 @@
 package org.javaacademy.civil_registry;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 import org.javaacademy.citizen.Citizen;
 import org.javaacademy.citizen.MaritalStatus;
@@ -15,11 +16,13 @@ import java.util.TreeMap;
 public class CivilRegistry {
     static final String MESSAGE_IS_MARRIED = "Кто то из кандидатов состоит в браке";
     static final String MESSAGE_NOT_MARRIED = "Кто то из кандидатов не состоит в браке";
-    static final String PATTERN_FROM_DATE = "dd/MM/yyyy";
-    static final String PATTERN_FROM_STATISTICS = """
+    public static final String PATTERN_FROM_DATE = "dd/MM/yyyy";
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(PATTERN_FROM_DATE);
+    public static final String PATTERN_FROM_STATISTICS = """
             Статистика по ЗАГС: %s
             Дата %s: количество свадеб - %d, количество разводов - %d, количество рождений - %d.
             """;
+    @Getter
     String civilRegistryName;
     TreeMap<LocalDate, ArrayList<CivilActionRecord>> civilActionRecords;
 
@@ -93,9 +96,8 @@ public class CivilRegistry {
      * Метод Получения статистики на указанную дату.
      */
     public void statisticsOfDate(LocalDate statisticsDate) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(PATTERN_FROM_DATE);
         System.out.printf(PATTERN_FROM_STATISTICS, civilRegistryName,
-                statisticsDate.format(formatter),
+                statisticsDate.format(FORMATTER),
                 getCountTypeActionFromRecords(statisticsDate, CivilActionType.MARRIAGE_REGISTRATION),
                 getCountTypeActionFromRecords(statisticsDate, CivilActionType.DIVORCE_REGISTRATION),
                 getCountTypeActionFromRecords(statisticsDate, CivilActionType.BIRTH_REGISTRATION));

@@ -1,6 +1,7 @@
 package org.javaacademy.civil_registry;
 
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 import org.javaacademy.citizen.Citizen;
@@ -10,7 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 @Getter
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@EqualsAndHashCode
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CivilActionRecord {
     LocalDate actionDate;
     CivilActionType actionType;
