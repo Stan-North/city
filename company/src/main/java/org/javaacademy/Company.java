@@ -1,6 +1,7 @@
 package org.javaacademy;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.collections4.MultiValuedMap;
@@ -20,6 +21,7 @@ import java.util.Arrays;
 
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Getter
 public class Company {
     static final Double INITIAL_TIME = 0.0;
     static final String TASK_DONE_MESSAGE = " - сделана.";
@@ -57,7 +59,7 @@ public class Company {
     /**
      * Выполнение программистами задач на неделю
      */
-    public void doWork(Task... tasks) {
+    public void doWork(@NonNull Task... tasks) {
         weekTaskList.addAll(List.of(tasks));
         while (!weekTaskList.isEmpty()) {
             doTasks();
@@ -118,7 +120,8 @@ public class Company {
 
     public void paySalaries() {
         timeTracking.forEach(this::payForWeek);
-        timeTracking.clear();
+        timeTracking.replaceAll((employee, workingTime) -> INITIAL_TIME);
+        weekTaskList.clear();
     }
 
     private void payForWeek(Employee employee, double workedHours) {
@@ -127,17 +130,17 @@ public class Company {
         expenses = expenses.add(moneyForWeek);
     }
 
-    public void companyInfo() {
+    public void printCompanyInfo() {
         BigDecimal roundedValue = expenses.setScale(NUMBER_OF_DECIMAL_SPACES, RoundingMode.HALF_UP);
         System.out.println(
                 companyName + "\n"
                     + EXPENSES_MESSAGE + roundedValue.toEngineeringString() + "\n"
                     + LIST_OF_TASKS_MESSAGE);
-        for (Programmer programmer : completedTasks.keySet()) {
-            System.out.println(programmer.getFullName() + REPORT_DIVIDER);
-            for (Task task : completedTasks.get(programmer)) {
-                System.out.println(task);
-            }
-        }
+
+        completedTasks.keySet()
+                .forEach(programmer -> {
+                    System.out.print(programmer.getFullName() + REPORT_DIVIDER);
+                    System.out.print(completedTasks.get(programmer) + "\n");
+                });
     }
 }
