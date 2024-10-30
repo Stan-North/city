@@ -21,8 +21,6 @@ public class Citizen extends Human {
     /**
      * Конструктор
      */
-
-
     public Citizen(@NonNull String firstName,
                    @NonNull String lastName,
                    @NonNull String middleName,

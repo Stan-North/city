@@ -1,6 +1,6 @@
-package com.javaacademy.unit.civil_registry;
+package org.javaacademy.unit.civil_registry;
 
-import com.javaacademy.unit.util.TestUtil;
+import org.javaacademy.unit.util.TestUtil;
 import lombok.AccessLevel;
 import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
