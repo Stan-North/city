@@ -15,8 +15,6 @@ public class Programmer extends Employee {
     static final int COMPARE_SEPARATOR = 0;
     static final String MIN_RATE_EXCEPTION = "Часовая ставка ниже минимальной < ";
     static final String MAX_RATE_EXCEPTION = "Часовая ставка выше максимальной > ";
-    static final Double INITIAL_PROGRAMMER_TASK_LABOR_HOURS = 0.0;
-    static final String REDUCED_LABOR_HOURS_EXCEPTION = "Часы работы нельзя уменьшить";
 
     public Programmer(@NonNull String firstName, @NonNull String lastName,
                       @NonNull String middleName, @NonNull Gender gender) {
@@ -46,21 +44,9 @@ public class Programmer extends Employee {
     }
 
     /**
-     * Задача взята в работу, переводится в статус "в работе", устанавливаются часы в ноль.
+     * Задача сделана, переводится в статус "завершена".
      */
-    public void takeTask(@NonNull Task task) {
-        task.setStatus(TaskStatusType.IN_PROGRESS);
-        task.setLaborHours(INITIAL_PROGRAMMER_TASK_LABOR_HOURS);
-    }
-
-    /**
-     * Задача сделана, переводится в статус "завершена", устанавливаются часы, но не меньше имеющихся по задаче.
-     */
-    public void doneTask(@NonNull Task task, @NonNull Double laborHours) throws LaborHoursException {
-        if (laborHours < task.getLaborHours()) {
-            throw new LaborHoursException(REDUCED_LABOR_HOURS_EXCEPTION);
-        }
+    public void takeTask(@NonNull Task task) throws LaborHoursException {
         task.setStatus(TaskStatusType.COMPLETED);
-        task.setLaborHours(laborHours);
     }
 }

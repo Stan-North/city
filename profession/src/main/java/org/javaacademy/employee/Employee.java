@@ -7,11 +7,11 @@ import lombok.NonNull;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-
+@Setter
+@Getter
 public class Employee extends Human {
-    @Setter
-    @Getter
     private BigDecimal rate;
+    private BigDecimal moneyEarned = BigDecimal.ZERO;
 
     public Employee(@NonNull String firstName, @NonNull String lastName,
                     @NonNull String middleName, @NonNull Gender gender) {
