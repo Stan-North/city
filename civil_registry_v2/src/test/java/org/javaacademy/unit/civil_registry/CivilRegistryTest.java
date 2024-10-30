@@ -1,6 +1,6 @@
-package com.javaacademy.unit.civil_registry;
+package org.javaacademy.unit.civil_registry;
 
-import com.javaacademy.unit.util.TestUtil;
+import org.javaacademy.unit.util.TestUtil;
 import lombok.AccessLevel;
 import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
@@ -15,10 +15,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.TreeMap;
+
+import static org.javaacademy.civil_registry.CivilRegistry.FORMATTER;
+import static org.javaacademy.civil_registry.CivilRegistry.PATTERN_FROM_STATISTICS;
 
 @DisplayName("Тестирование класса ЗАГС(CivilRegistry)")
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -120,7 +125,6 @@ public class CivilRegistryTest {
         TreeMap<LocalDate, ArrayList<CivilActionRecord>> civilActionRecords =
                 (TreeMap) civilActionRecordsField.get(civilRegistry);
         ArrayList<CivilActionRecord> civilActionRecordsList = civilActionRecords.get(date);
-
         return civilActionRecordsList.get(0);
     }
 
@@ -164,5 +168,23 @@ public class CivilRegistryTest {
         CivilActionRecord actual = getCivilActionRecordByIndexZero();
 
         Assertions.assertEquals(expected, actual, "Запись в акте гражданского состояния не равна");
+    }
+
+    @Test
+    @SneakyThrows(CitizenIsMarriedException.class)
+    @DisplayName("Печать статистики за дату")
+    public void marriageRegistrationStatistics() {
+        int countMarriage = 1;
+        String expected = PATTERN_FROM_STATISTICS.formatted(
+                civilRegistryName, date.format(FORMATTER), countMarriage, 0, 0);
+        PrintStream originalOut = System.out;
+        ByteArrayOutputStream actual = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actual));
+
+        civilRegistry.marriageRegistration(man, woman, date);
+        civilRegistry.statisticsOfDate(date);
+
+        Assertions.assertEquals(expected, actual.toString(), "Запись не равна");
+        System.setOut(originalOut);
     }
 }

@@ -1,6 +1,6 @@
-package com.javaacademy.unit.citizen;
+package org.javaacademy.unit.citizen;
 
-import com.javaacademy.unit.util.TestUtil;
+import org.javaacademy.unit.util.TestUtil;
 import org.javaacademy.citizen.Citizen;
 import org.javaacademy.citizen.MaritalStatus;
 import org.javaacademy.citizen.SpouseNotFoundException;

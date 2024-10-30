@@ -1,4 +1,4 @@
-package com.javaacademy.unit.util;
+package org.javaacademy.unit.util;
 
 import lombok.experimental.UtilityClass;
 import org.javaacademy.citizen.Citizen;

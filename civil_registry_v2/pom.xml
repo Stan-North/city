@@ -21,7 +21,7 @@
         <dependency>
             <groupId>org.javaacademy</groupId>
             <artifactId>human</artifactId>
-            <version>1.0.0</version>
+            <version>${module.human.version}</version>
         </dependency>
 
         <dependency>
@@ -63,7 +63,7 @@
         <profile>
             <id>prom</id>
             <build>
-                <finalName>civil_registry_app_${lane}</finalName>
+                <finalName>civil_registry_app_prom</finalName>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -83,7 +83,7 @@
         <profile>
             <id>test</id>
             <build>
-                <finalName>civil_registry_app_${lane}</finalName>
+                <finalName>civil_registry_app_test</finalName>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
