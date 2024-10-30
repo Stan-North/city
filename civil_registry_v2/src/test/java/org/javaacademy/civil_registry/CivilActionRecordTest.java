@@ -41,14 +41,14 @@ class CivilActionRecordTest {
     @Test
     @DisplayName("Проверка даты на null")
     void localDateNotNull() {
-        Assertions.assertThrows(NullPointerException.class,
+        Assertions.assertThrowsExactly(NullPointerException.class,
                 () -> new CivilActionRecord(null, actionType, firstCitizen, secondCitizen));
     }
 
     @Test
     @DisplayName("Проверка типа действия на null")
     void actionTypeNotNull() {
-        Assertions.assertThrows(NullPointerException.class,
+        Assertions.assertThrowsExactly(NullPointerException.class,
                 () -> new CivilActionRecord(actionDate, null, firstCitizen, secondCitizen));
         }
 
