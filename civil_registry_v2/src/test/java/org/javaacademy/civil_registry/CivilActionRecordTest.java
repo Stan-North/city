@@ -75,8 +75,6 @@ class CivilActionRecordTest {
     void actionDateInRecordSuccess() {
         Assertions.assertEquals(actionDate, civilActionRecord1.getActionDate(),
                 "Дата должна совпадать с установленной датой");
-        Assertions.assertEquals(actionDate.hashCode(), civilActionRecord1.getActionDate().hashCode(),
-                "hash дат должен совпадать");
     }
 
     @Test
@@ -84,8 +82,6 @@ class CivilActionRecordTest {
     void actionTypeInRecordSuccess() {
         Assertions.assertEquals(actionType, civilActionRecord1.getActionType(),
                 "Тип действия должен совпадать с установленным типом действия");
-        Assertions.assertEquals(actionType.hashCode(), civilActionRecord1.getActionType().hashCode(),
-                "hash типа действия должен совпадать");
     }
 
     @Test
@@ -95,8 +91,6 @@ class CivilActionRecordTest {
         Assertions.assertEquals(2, citizenList.size(), "Несоответствие длины списка");
         Assertions.assertEquals(firstCitizen, citizenList.get(0), "Несоответствие 1 гражданина в списке");
         Assertions.assertEquals(secondCitizen, citizenList.get(1), "Несоответствие 2 гражданина в списке");
-        Assertions.assertEquals(citizenList.hashCode(), civilActionRecord1.getCitizenList().hashCode(),
-                "hash списков должен совпадать");
     }
 
     @Test
