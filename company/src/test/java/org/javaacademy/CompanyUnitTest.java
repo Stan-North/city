@@ -42,14 +42,13 @@ public class CompanyUnitTest {
         secondProgrammer = null;
         firstTask = null;
         secondTask = null;
-
     }
 
     @Test
     @DisplayName("Создание экземпляра company c не null объектами")
     public void createCompanySuccess() {
-    Assertions.assertDoesNotThrow(() -> new Company(COMPANY_NAME,
-            manager, PROGRAMMERS_HOUR_RATE, firstProgrammer));
+        Assertions.assertDoesNotThrow(() -> new Company(COMPANY_NAME,
+                manager, PROGRAMMERS_HOUR_RATE, firstProgrammer));
     }
 
     @Test
@@ -100,7 +99,7 @@ public class CompanyUnitTest {
 
     @Test
     @DisplayName("Проверка имени компании")
-    public void checkCompanyNameSuccess(){
+    public void checkCompanyNameSuccess() {
         Assertions.assertEquals(COMPANY_NAME, company.getCompanyName());
     }
 
