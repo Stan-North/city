@@ -1,5 +1,7 @@
-package org.javaacademy.employee;
+package org.javaacademy.employee.programmer;
 
+import org.javaacademy.employee.employee.Employee;
+import org.javaacademy.employee.employee.EmployeeInvalidRateException;
 import org.javaacademy.human.Gender;
 import lombok.AccessLevel;
 import lombok.NonNull;
@@ -7,8 +9,8 @@ import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
 
-import static org.javaacademy.employee.ProgrammerRateRange.MAX_RATE;
-import static org.javaacademy.employee.ProgrammerRateRange.MIN_RATE;
+import static org.javaacademy.employee.programmer.ProgrammerRateRange.MAX_RATE;
+import static org.javaacademy.employee.programmer.ProgrammerRateRange.MIN_RATE;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Programmer extends Employee {
@@ -25,7 +27,7 @@ public class Programmer extends Employee {
      * Устанавливает ставку в заданных границах минимальной и максимальнйо ставки
      */
     @Override
-    public void setRate(BigDecimal rate) throws EmployeeInvalidRateException  {
+    public void setRate(BigDecimal rate) throws EmployeeInvalidRateException {
         checkRateInRange(rate);
         super.setRate(rate);
     }
@@ -47,6 +49,6 @@ public class Programmer extends Employee {
      * Задача сделана, переводится в статус "завершена".
      */
     public void takeTask(@NonNull Task task) throws LaborHoursException {
-        task.setStatus(TaskStatusType.COMPLETED);
+        task.setStatus(Task.TaskStatusType.COMPLETED);
     }
 }

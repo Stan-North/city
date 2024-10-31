@@ -1,4 +1,4 @@
-package org.javaacademy.employee;
+package org.javaacademy.employee.programmer;
 
 public enum TaskStatusType {
     IN_PROGRESS,

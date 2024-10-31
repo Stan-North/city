@@ -1,6 +1,7 @@
-package org.javaacademy.employee;
+package org.javaacademy.employee.manager;
 
 import lombok.NonNull;
+import org.javaacademy.employee.employee.Employee;
 import org.javaacademy.human.Gender;
 
 import java.math.BigDecimal;

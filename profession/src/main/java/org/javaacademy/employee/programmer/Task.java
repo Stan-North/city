@@ -1,4 +1,4 @@
-package org.javaacademy.employee;
+package org.javaacademy.employee.programmer;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
-import static org.javaacademy.employee.TaskStatusType.IN_PROGRESS;
+import static org.javaacademy.employee.programmer.Task.TaskStatusType.IN_PROGRESS;
 
 @Setter(value = AccessLevel.PROTECTED)
 @Getter()
@@ -20,5 +20,10 @@ public class Task {
     public Task(String description, Double laborHours) {
         this.description = description;
         this.laborHours = laborHours;
+    }
+
+    public enum TaskStatusType {
+        IN_PROGRESS,
+        COMPLETED;
     }
 }

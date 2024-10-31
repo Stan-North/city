@@ -1,5 +1,7 @@
-package org.javaacademy.employee;
+package org.javaacademy.employee.employee;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.javaacademy.human.Gender;
 import org.javaacademy.human.Human;
 import lombok.Getter;
@@ -9,9 +11,10 @@ import lombok.Setter;
 import java.math.BigDecimal;
 @Setter
 @Getter
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Employee extends Human {
-    private BigDecimal rate;
-    private BigDecimal moneyEarned = BigDecimal.ZERO;
+    BigDecimal rate;
+    BigDecimal moneyEarned = BigDecimal.ZERO;
 
     public Employee(@NonNull String firstName, @NonNull String lastName,
                     @NonNull String middleName, @NonNull Gender gender) {

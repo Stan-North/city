@@ -5,10 +5,10 @@ import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
-import org.javaacademy.employee.Employee;
-import org.javaacademy.employee.Manager;
-import org.javaacademy.employee.Programmer;
-import org.javaacademy.employee.Task;
+import org.javaacademy.employee.employee.Employee;
+import org.javaacademy.employee.manager.Manager;
+import org.javaacademy.employee.programmer.Programmer;
+import org.javaacademy.employee.programmer.Task;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
