@@ -1,8 +1,8 @@
 package org.javaacademy;
 
-import org.javaacademy.employee.manager.Manager;
-import org.javaacademy.employee.programmer.Programmer;
-import org.javaacademy.employee.programmer.Task;
+import org.javaacademy.manager.Manager;
+import org.javaacademy.programmer.Programmer;
+import org.javaacademy.programmer.Task;
 import org.javaacademy.human.Gender;
 
 import java.math.BigDecimal;

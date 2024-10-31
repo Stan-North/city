@@ -1,4 +1,4 @@
-package org.javaacademy.employee.programmer;
+package org.javaacademy.programmer;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package org.javaacademy.employee.employee;
+package org.javaacademy.employee;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

@@ -1,7 +1,7 @@
-package org.javaacademy.employee.programmer;
+package org.javaacademy.programmer;
 
-import org.javaacademy.employee.employee.Employee;
-import org.javaacademy.employee.employee.EmployeeInvalidRateException;
+import org.javaacademy.employee.Employee;
+import org.javaacademy.employee.EmployeeInvalidRateException;
 import org.javaacademy.human.Gender;
 import lombok.AccessLevel;
 import lombok.NonNull;
@@ -9,8 +9,8 @@ import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
 
-import static org.javaacademy.employee.programmer.ProgrammerRateRange.MAX_RATE;
-import static org.javaacademy.employee.programmer.ProgrammerRateRange.MIN_RATE;
+import static org.javaacademy.programmer.ProgrammerRateRange.MAX_RATE;
+import static org.javaacademy.programmer.ProgrammerRateRange.MIN_RATE;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Programmer extends Employee {
@@ -49,6 +49,6 @@ public class Programmer extends Employee {
      * Задача сделана, переводится в статус "завершена".
      */
     public void takeTask(@NonNull Task task) throws LaborHoursException {
-        task.setStatus(Task.TaskStatusType.COMPLETED);
+        task.setStatus(TaskStatusType.COMPLETED);
     }
 }
