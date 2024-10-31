@@ -55,10 +55,8 @@ class CivilActionRecordTest {
     @Test
     @DisplayName("Проверка гражданина на null")
     void citizenNotNull() {
-        Citizen[] citizenArray = null;
-
         Assertions.assertThrowsExactly(NullPointerException.class,
-                () -> new CivilActionRecord(actionDate, actionType, citizenArray));
+                () -> new CivilActionRecord(actionDate, actionType, null));
     }
 
     @Test
