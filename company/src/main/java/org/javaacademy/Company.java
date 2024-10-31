@@ -7,9 +7,9 @@ import lombok.experimental.FieldDefaults;
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.javaacademy.employee.Employee;
-import org.javaacademy.employee.Manager;
-import org.javaacademy.employee.Programmer;
-import org.javaacademy.employee.Task;
+import org.javaacademy.manager.Manager;
+import org.javaacademy.programmer.Programmer;
+import org.javaacademy.programmer.Task;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

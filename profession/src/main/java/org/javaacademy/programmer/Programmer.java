@@ -1,5 +1,7 @@
-package org.javaacademy.employee;
+package org.javaacademy.programmer;
 
+import org.javaacademy.employee.Employee;
+import org.javaacademy.employee.EmployeeInvalidRateException;
 import org.javaacademy.human.Gender;
 import lombok.AccessLevel;
 import lombok.NonNull;
@@ -7,8 +9,8 @@ import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
 
-import static org.javaacademy.employee.ProgrammerRateRange.MAX_RATE;
-import static org.javaacademy.employee.ProgrammerRateRange.MIN_RATE;
+import static org.javaacademy.programmer.ProgrammerRateRange.MAX_RATE;
+import static org.javaacademy.programmer.ProgrammerRateRange.MIN_RATE;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Programmer extends Employee {
@@ -25,7 +27,7 @@ public class Programmer extends Employee {
      * Устанавливает ставку в заданных границах минимальной и максимальнйо ставки
      */
     @Override
-    public void setRate(BigDecimal rate) throws EmployeeInvalidRateException  {
+    public void setRate(BigDecimal rate) throws EmployeeInvalidRateException {
         checkRateInRange(rate);
         super.setRate(rate);
     }

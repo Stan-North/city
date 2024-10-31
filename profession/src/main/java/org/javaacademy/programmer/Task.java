@@ -1,4 +1,4 @@
-package org.javaacademy.employee;
+package org.javaacademy.programmer;
 
 import lombok.AccessLevel;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import lombok.ToString;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
-import static org.javaacademy.employee.TaskStatusType.IN_PROGRESS;
+import static org.javaacademy.programmer.TaskStatusType.IN_PROGRESS;
 
 @Setter(value = AccessLevel.PROTECTED)
 @Getter()

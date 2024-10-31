@@ -1,11 +1,9 @@
 package org.javaacademy;
 
-import org.javaacademy.employee.Manager;
-import org.javaacademy.employee.Programmer;
-import org.javaacademy.employee.Task;
-import org.javaacademy.human.Gender;
+import org.javaacademy.manager.Manager;
+import org.javaacademy.programmer.Programmer;
+import org.javaacademy.programmer.Task;
 import org.junit.jupiter.api.*;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.math.BigDecimal;

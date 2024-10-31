@@ -1,8 +1,9 @@
 package org.javaacademy;
 
-import org.javaacademy.employee.Manager;
-import org.javaacademy.employee.Programmer;
-import org.javaacademy.employee.Task;
+
+import org.javaacademy.manager.Manager;
+import org.javaacademy.programmer.Programmer;
+import org.javaacademy.programmer.Task;
 import org.javaacademy.human.Gender;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

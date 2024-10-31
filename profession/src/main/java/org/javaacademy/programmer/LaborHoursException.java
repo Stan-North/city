@@ -1,4 +1,4 @@
-package org.javaacademy.employee;
+package org.javaacademy.programmer;
 
 public class LaborHoursException extends RuntimeException {
     public LaborHoursException(String message) {
