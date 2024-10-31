@@ -21,8 +21,11 @@ public class Citizen extends Human {
     /**
      * Конструктор
      */
-    public Citizen(@NonNull String firstName, @NonNull String lastName,
-                   @NonNull String middleName, @NonNull Gender gender, @NonNull MaritalStatus maritalStatus,
+    public Citizen(@NonNull String firstName,
+                   @NonNull String lastName,
+                   @NonNull String middleName,
+                   @NonNull Gender gender,
+                   @NonNull MaritalStatus maritalStatus,
                    Citizen spouse) {
         super(firstName, lastName, middleName, gender);
         this.maritalStatus = maritalStatus;
@@ -48,8 +51,11 @@ public class Citizen extends Human {
      * Переопределение метода для получения ребенка гражданином(Citizen)
      */
     @Override
-    public Citizen makeChild(@NonNull String name, @NonNull String lastName, @NonNull String middleName,
-                             @NonNull Gender gender, @NonNull Human otherParent) {
+    public Citizen makeChild(@NonNull String name,
+                             @NonNull String lastName,
+                             @NonNull String middleName,
+                             @NonNull Gender gender,
+                             @NonNull Human otherParent) {
         return new Citizen(super.makeChild(name, lastName, middleName, gender, otherParent));
     }
 
@@ -58,7 +64,7 @@ public class Citizen extends Human {
      */
     private void checkSpouse(Human spouse) {
         if (spouse == null) {
-            throw new SponceNotFoundException(SPOUSE_NOT_FOUND);
+            throw new SpouseNotFoundException(SPOUSE_NOT_FOUND);
         }
     }
 }

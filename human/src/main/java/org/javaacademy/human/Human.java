@@ -30,7 +30,9 @@ public class Human {
     Human mother;
     final List<Human> children;
 
-    public Human(@NonNull String firstName, @NonNull String lastName, @NonNull String middleName,
+    public Human(@NonNull String firstName,
+                 @NonNull String lastName,
+                 @NonNull String middleName,
                  @NonNull Gender gender) {
         this.firstName = transformText(firstName);
         this.lastName = transformText(lastName);
