@@ -28,6 +28,6 @@ public class Runner {
                 args[0], manager, BigDecimal.valueOf(hourRate), firstProgrammer, secondProgrammer);
         company.doWork(firsTask, secondTask, thirdTask);
         company.paySalaries();
-        company.companyInfo();
+        company.printCompanyInfo();
     }
 }

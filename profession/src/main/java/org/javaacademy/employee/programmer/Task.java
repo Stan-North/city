@@ -1,9 +1,10 @@
 package org.javaacademy.employee.programmer;
 
 import lombok.AccessLevel;
-import lombok.Getter;
 import lombok.Setter;
+import lombok.Getter;
 import lombok.ToString;
+import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 
 import static org.javaacademy.employee.programmer.Task.TaskStatusType.IN_PROGRESS;
@@ -17,7 +18,7 @@ public class Task {
     TaskStatusType status = IN_PROGRESS;
     Double laborHours;
 
-    public Task(String description, Double laborHours) {
+    public Task(@NonNull String description, @NonNull Double laborHours) {
         this.description = description;
         this.laborHours = laborHours;
     }
