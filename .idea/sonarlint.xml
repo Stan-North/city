@@ -3,6 +3,7 @@
   <component name="SonarLintProjectSettings">
     <option name="moduleMapping">
       <map>
+        <entry key="civil_registry" value="civil_registry_v2" />
         <entry key="human" value="Human" />
       </map>
     </option>

@@ -9,7 +9,7 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>civil_registry_v2</artifactId>
+    <artifactId>civil_registry</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
